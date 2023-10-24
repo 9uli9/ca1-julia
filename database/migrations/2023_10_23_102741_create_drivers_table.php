@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->integer('age');
             $table->enum('league_type', ['f1', 'f2', 'f3']);
+            $table->timestamps();
         });
     }
 
