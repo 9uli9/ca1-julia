@@ -4,38 +4,42 @@
 
 <h3>Create Driver</h3>
 
-{{-- @if ($errors->any())
-
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@if($errors->has('title'))
-<span> {{ $errors->first('title')}} </span>
-@endif --}}
-
-
-<form action="{{route('drivers.store')}}" method="POST">
+<form action="{{ route('drivers.store') }}" method="POST">
     @csrf
+
     <div>
-        <label for="title">Title </label> 
-        <input type="text" name="title" id="title"/>
-        @if($errors->has('title'))
-        <span> {{$errors->first('title')}}</span>
-        @endif
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name"/>
+        @error('first_name')
+            <span>{{ $message }}</span>
+        @enderror
     </div>
 
     <div>
-        <label for="body">Description</label> 
-        <input type="text" name="body" id="body"/>
-        @if($errors->has('body'))
-        <span> {{$errors->first('body')}}</span>
-        @endif
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name"/>
+        @error('last_name')
+            <span>{{ $message }}</span>
+        @enderror
     </div>
-    <button type="submit" >Submit</button>
+
+    <div>
+        <label for="age">Age</label>
+        <input type="number" name="age" id="age"/>
+        @error('age')
+            <span>{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div>
+        <label for="league_type">League Type</label>
+        <input type="text" name="league_type" id="league_type"/>
+        @error('league_type')
+            <span>{{ $message }}</span>
+        @enderror
+    </div>
+
+    <button type="submit">Submit</button>
 </form>
 
 @endsection

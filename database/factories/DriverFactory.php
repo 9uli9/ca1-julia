@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Driver;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Todo>
- */
 class DriverFactory extends Factory
 {
     /**
@@ -17,10 +15,10 @@ class DriverFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => $this->faker->text(100),
-            'last_name' => $this->faker->text(100),
-            'age' => $this->faker->integer(100),
-            'league_type' => $this->faker->text(100)
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'age' => $this->faker->numberBetween(18, 40), 
+            'league_type' => $this->faker->randomElement(['f1', 'f2', 'f3']),
         ];
     }
 }
