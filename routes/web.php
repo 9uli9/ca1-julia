@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\CarController;
+
 
 
 
@@ -11,8 +13,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Remove the following line, as it's redundant with your grouped routes
-// Route::resource('drivers', DriverController::class);
+Route::group(['prefix' => 'cars'], function () {
+    Route::get('/', [CarController::class, 'index'])->name('cars.index');
+    Route::post('/', [CarController::class, 'store'])->name('cars.store');
+    Route::get('/create', [CarController::class, 'create'])->name('cars.create');
+    Route::get('/{car}', [CarController::class, 'show'])->name('cars.show');
+    Route::get('/{car}/edit', [CarController::class, 'edit'])->name('cars.edit');
+    Route::put('/{car}', [CarController::class, 'update'])->name('cars.update');
+    Route::delete('/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
+});
 
 Route::group(['prefix' => 'drivers'], function () {
     Route::get('/', [DriverController::class, 'index'])->name('drivers.index');
@@ -23,6 +32,8 @@ Route::group(['prefix' => 'drivers'], function () {
     Route::put('/{driver}', [DriverController::class, 'update'])->name('drivers.update');
     Route::delete('/{driver}', [DriverController::class, 'destroy'])->name('drivers.destroy');
 });
+
+Route::delete('/{driver}', [DriverController::class, 'destroy'])->name('drivers.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

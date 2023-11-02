@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Driver;
+use App\Models\Car;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-Use App\Models\Driver;
+
 
 class DriverSeeder extends Seeder
 {
@@ -13,6 +15,9 @@ class DriverSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Driver::factory()->count(10)->create();
+        
         $admin = new Driver;
         $admin->first_name = "Julia";
         $admin->last_name = "Szew";

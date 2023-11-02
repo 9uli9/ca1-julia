@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -107,5 +108,6 @@ class DriverController extends Controller
         $driver->delete();
 
         return redirect()->route('drivers.index')->with('status', 'Selected Driver deleted successfully!');
+
     }
 }
