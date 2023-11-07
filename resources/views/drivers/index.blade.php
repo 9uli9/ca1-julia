@@ -26,7 +26,7 @@
     <ul role="list" class="divide-red-100 dark:divide-red-700">
         <div class="relative overflow-x-auto shadow-md ">
             <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
-                <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
+                <thead class=" w-full text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                     <tr>
                         <th scope="col" class="px-6 py-3" >
                             First name
@@ -40,6 +40,14 @@
                         <th scope="col" class="px-6 py-3">
                             League Type
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Cars Owned
+                        </th>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Edit Driver
+                    </th>
+                    
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +64,12 @@
                             </td>
                             <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                 {{ $driver->league_type }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap ">
+
+                                @foreach ($driver->cars as $car)
+                                    {{$car->brand}}
+                                @endforeach
                             </td>
                             <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                 <a href="{{ route('drivers.edit', ['driver' => $driver->id]) }}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Edit</a>

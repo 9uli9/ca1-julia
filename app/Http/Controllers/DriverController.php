@@ -48,6 +48,7 @@ class DriverController extends Controller
         $driver->last_name = $request->last_name;
         $driver->age = $request->age;
         $driver->league_type = $request->league_type;
+        // $driver->car_id = $request->car_id; 
         $driver->save();
 
         return redirect()->route('drivers.index')->with('status', 'Created a new Driver');
@@ -64,8 +65,11 @@ class DriverController extends Controller
     public function edit(string $id)
     {
         $driver = Driver::findOrFail($id);
+        $cars = Car::all();
+        
         return view('drivers.edit', [
-            'driver' => $driver
+            'driver' => $driver,
+            'cars'=> $cars
         ]);
     }
 
@@ -76,6 +80,7 @@ class DriverController extends Controller
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
             'league_type' => 'required|in:f1,f2,f3',
+            'car_id' => 'array',
         ];
     
         $messages = [
@@ -84,6 +89,7 @@ class DriverController extends Controller
             'age.required' => 'Age is required',
             'league_type.required' => 'League Type is required',
             'league_type.in' => 'Invalid League Type',
+            'car_id.array' => 'Please select at least one car',
         ];
     
         $request->validate($rules, $messages);
@@ -94,20 +100,21 @@ class DriverController extends Controller
         $driver->age = $request->age;
         $driver->league_type = $request->league_type;
         $driver->save();
-    
-        // Set old input manually
-        $request->flash();
+
+        // Sync the selected cars
+        $driver->cars()->sync($request->input('car_id', []));
     
         return redirect()->route('drivers.index')->with('status', 'Updated Driver');
     }
-    
-
+  
     public function destroy(string $id)
     {
+
         $driver = Driver::findOrFail($id);
+    
         $driver->delete();
-
-        return redirect()->route('drivers.index')->with('status', 'Selected Driver deleted successfully!');
-
+        return redirect()->route('drivers.index')->with('status', 'Driver deleted successfully!');
     }
+    
+
 }

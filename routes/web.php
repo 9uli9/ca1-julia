@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\RaceController;
 
 
 
@@ -34,6 +35,17 @@ Route::group(['prefix' => 'drivers'], function () {
 });
 
 Route::delete('/{driver}', [DriverController::class, 'destroy'])->name('drivers.destroy');
+
+Route::group(['prefix' => 'races'], function () {
+    Route::get('/', [RaceController::class, 'index'])->name('races.index');
+    Route::post('/', [RaceController::class, 'store'])->name('races.store');
+    Route::get('/create', [RaceController::class, 'create'])->name('races.create');
+    Route::get('/{race}', [RaceController::class, 'show'])->name('races.show');
+    Route::get('/{race}/edit', [RaceController::class, 'edit'])->name('races.edit');
+    Route::put('/{race}', [RaceController::class, 'update'])->name('races.update');
+    Route::delete('/{race}', [RaceController::class, 'destroy'])->name('races.destroy');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

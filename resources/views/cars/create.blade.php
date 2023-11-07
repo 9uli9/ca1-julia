@@ -7,13 +7,7 @@
 <form action="{{ route('cars.store') }}" method="POST">
     @csrf
 
-    <div class="mb-4"> <!-- Added mb-4 class -->
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" placeholder="Enter Name" style="color: black;"/>
-        @error('name')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+
 
     <div class="mb-4"> <!-- Added mb-4 class -->
         <label for="brand">Brand</label>
@@ -31,14 +25,24 @@
         @enderror
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4"> <!-- Added mb-4 class -->
+        <label for="driver">Driver</label>
+        <input type="text" name="driver" id="driver" placeholder="Enter driver" style="color: black;"/> 
+        @error('driver')
+            <span>{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- <div class="mb-4">
         <label for="driver_id"  class="block font-bold mb-1" placeholder="Select Driver" >Select Driver:</label>
-        <select name="driver_id" id="driver_id" class="border border-gray-300 p-2  w-full" style="color: black;">
+        <select name="driver_id" id="driver_id" class="border border-gray-300 p-2 w-full">
+            <option value="" disabled selected>Select Driver</option>
             @foreach ($drivers as $driver)
-                <option value="{{ $driver->id }}">{{ $driver->name }}</option>
+                <option value="{{ $driver->id }}">{{ $driver->first_name }} {{ $driver->last_name }}</option>
             @endforeach
         </select>
-    </div>
+        
+    </div> --}}
 
     <button class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900" type="submit">Submit</button>
 </form>

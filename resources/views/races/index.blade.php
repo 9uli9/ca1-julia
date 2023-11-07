@@ -2,7 +2,7 @@
 
 @section('header')
 <h2 class="font-semibold text-xl text-white leading-tight flex items-center space-x-2">
-    Cars
+    Races
     <span class="icon-padding">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-2" height="1.25em" viewBox="0 0 320 512">
             <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -13,7 +13,7 @@
 </h2>
 
 <div class="flex justify-end">
-    <a href="{{ route('cars.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900 ">Create</a>
+    <a href="{{ route('races.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900 ">Create</a>
 </div>
 
 
@@ -28,41 +28,50 @@
             <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
                 <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                     <tr>
-
-                        <th scope="col" class="px-6 py-3">
-                            Brand
+                        <th scope="col" class="px-6 py-3" >
+                            Title
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Colour
+                            Location
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Driver
+                            Difficulty
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Maximum Capacity
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                           Start Date
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($cars as $car)
+                    @forelse($races as $race)
                         <tr class="bg-black dark:bg-black-800 border-b border-white-100 dark:border-white-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                {{ $race->title }}
+                            </th>
+                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                {{ $race->location }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                {{ $race->difficulty }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                {{ $race->max_capacity }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                {{ $race->start_date }}
+                            </td>
 
                             <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                {{ $car->brand }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                {{ $car->colour }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap ">
-                                {{ $car->driver->first_name }} {{ $car->driver->last_name }}
-                            </td>
-                            
-                            
-                            <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                <a href="{{ route('cars.edit', ['car' => $car->id]) }}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Edit</a>
+                                <a href="{{ route('races.edit', ['race' => $race->id]) }}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Edit</a>
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="4" class="text-center py-4 text-red-900 dark:text-white">
-                                No Cars found!
+                                No Races found!
                             </td>
                         </tr>
                     @endforelse

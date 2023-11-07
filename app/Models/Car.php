@@ -9,8 +9,8 @@ class Car extends Model
 {
     use HasFactory;
 
-    public function driver()
+    public function drivers()
     {
-        return $this->belongsTo(Driver::class); 
+        return $this->belongsToMany(Driver::class);
     }
 }

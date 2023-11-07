@@ -2,9 +2,9 @@
 @section('content')
 
 <h1>Show Driver</h1>
-<p>{{ $car->Name }}</p>
-<p>{{ $car->Brand }}</p>
-<p>{{ $car->Colour }}</p>
+
+<p>{{ $car->brand }}</p>
+<p>{{ $car->colour }}</p>
 <p>{{ $car->league_type }}</p>
 
  <div>

@@ -8,13 +8,7 @@
     @csrf
     @method('PUT')
 
-    <div class="mb-4">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{ old('name', $car->name) }}" placeholder="Enter Name" style="color: black;"/>
-        @error('name')
-            <span>{{ $message }}</span>
-        @enderror
-    </div>
+
 
     <div class="mb-4">
         <label for="brand">Brand</label>
@@ -37,7 +31,7 @@
         <select name="driver_id" id="driver_id" class="border border-gray-300 p-2 rounded w-full">
             @foreach ($drivers as $driver)
                 <option value="{{ $driver->id }}" {{ old('driver_id', $car->driver_id) == $driver->id ? 'selected' : '' }}>
-                    {{ $driver->name }}
+                    {{ $driver->first_name }}{{ $driver->last_name }}
                 </option>
             @endforeach
         </select>

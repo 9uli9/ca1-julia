@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Car;
 use App\Models\Driver;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,7 @@ class DriverFactory extends Factory
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'age' => $this->faker->numberBetween(18, 40), 
-            'league_type' => $this->faker->randomElement(['f1', 'f2', 'f3']),
+            'league_type' => $this->faker->randomElement(['f1', 'f2', 'f3'])
         ];
     }
 }
