@@ -7,6 +7,7 @@
 <form action="{{ route('drivers.update', $driver->id) }}" method="POST">
     @csrf
     @method('PUT')
+    // Old attribute shows the inputs that were already inputted in when viewing drivers.index
 
     <div class="mb-4">
         <label for="first_name">First Name</label>

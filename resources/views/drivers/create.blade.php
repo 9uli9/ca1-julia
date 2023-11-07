@@ -54,6 +54,7 @@
     <button class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900" type="submit ">Submit</button>
 </form>
 
+// Tried to add JavaScript function to dynamically add car input fields
 <script>
     function addCarInput() {
         const carsContainer = document.getElementById('cars-container');

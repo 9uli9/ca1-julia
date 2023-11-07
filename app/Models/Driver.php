@@ -9,6 +9,8 @@ class Driver extends Model
 {
     use HasFactory;
 
+    // Establishes a One-To-Many Relationship Driver has many cars
+
     public function cars()
     {
         return $this->hasMany(Car::class); 
