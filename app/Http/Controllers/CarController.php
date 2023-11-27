@@ -27,48 +27,55 @@ class CarController extends Controller
     public function create()
     {
         // Retrieve all drivers from the database
+        $cars = Car::all(); 
         $drivers = Driver::all(); 
+        // return view('cars.create', [
+        //     'drivers' => $drivers, 
 
-        // Render the 'cars.create' view and pass the drivers data
-        return view('cars.create', [
-            'drivers' => $drivers, 
-        ]);
+            return view('cars.create')->with('drivers', $drivers)
+                                      ->with('races', $races);
     }
 
     // Store a new car
     public function store(Request $request): RedirectResponse
-    {
-        // Define validation rules and custom error messages
-        $rules = [
-            'name' => 'required|string|min:2|max:150',
-            'brand' => 'required|string|min:2|max:150',
-            'colour' => 'required|string|min:2|max:150',
-            'driver_id' => 'required|integer|exists:drivers,id', 
-        ];
-    
-        $messages = [
-            'name.required' => 'Name is required',
-            'brand.required' => 'Brand is required',
-            'colour.required' => 'Colour is required',
-            'driver_id.integer' => 'Driver ID must be an integer',
-        ];
+{
+    // Define validation rules and custom error messages
+    $rules = [
+        'name' => 'required|string|min:2|max:150',
+        'brand' => 'required|string|min:2|max:150',
+        'colour' => 'required|string|min:2|max:150',
+        'driver_id' => 'required|integer|exists:drivers,id',
+        // 'races' => ['required', 'exists:races,id']
+    ];
 
-        // Validate the request data
-        $request->validate($rules, $messages);
+    $messages = [
+        'name.required' => 'Name is required',
+        'brand.required' => 'Brand is required',
+        'colour.required' => 'Colour is required',
+        'driver_id.integer' => 'Driver ID must be an integer',
+        // 'races.required' => 'Races are required'
+    ];
 
-        // Create a new Car instance and fill it with request data
-        $car = new Car;
-        $car->name = $request->name;
-        $car->brand = $request->brand;
-        $car->colour = $request->colour;
-        $car->driver_id = $request->driver_id; 
+    // Validate the request data
+    $request->validate($rules, $messages);
 
-        // Save the car to the database
-        $car->save();
+    // Create a new Car instance and fill it with request data
+    $car = Car::create([
+        'name' => $request->name,
+        'brand' => $request->brand,
+        'colour' => $request->colour,
+        'driver_id' => $request->driver_id
+    ]);
 
-        // Redirect back to the 'cars.index' route with a success message
-        return redirect()->route('cars.index')->with('status', 'Created a new Car');
-    }
+
+    // if ($request->has('races')) {
+    //     $car->races()->attach($request->races);
+    // }
+
+    // Redirect back to the 'cars.index' route with a success message
+    return redirect()->route('cars.index')->with('status', 'Created a new Car');
+}
+
 
     // Show details of a specific car
     public function show(string $id)
