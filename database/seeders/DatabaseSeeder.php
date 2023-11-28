@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             DriverSeeder::class,
             CarSeeder::class,
             RaceSeeder::class,
+            CarRaceSeeder::class
         ]);
 
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\RaceController;
+use App\Http\Controllers\CarRaceController;
 
 
 
@@ -46,6 +47,12 @@ Route::group(['prefix' => 'races'], function () {
     Route::put('/{race}', [RaceController::class, 'update'])->name('races.update');
     Route::delete('/{race}', [RaceController::class, 'destroy'])->name('races.destroy');
 });
+
+// Route::get('/carraces', [CarRaceController::class, 'index'])->name('carraces.index');
+// Route::get('/carraces/{id}', [CarRaceController::class, 'show'])->name('carraces.show');
+// Route::get('/carraces/create', [CarRaceController::class, 'create'])->name('carraces.create');
+// Route::post('/carraces', [CarRaceController::class, 'store'])->name('carraces.store');
+ 
 
 
 Route::get('/dashboard', function () {
