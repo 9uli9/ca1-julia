@@ -32,8 +32,8 @@ class CarController extends Controller
         // return view('cars.create', [
         //     'drivers' => $drivers, 
 
-            return view('cars.create')->with('drivers', $drivers)
-                                      ->with('races', $races);
+            return view('cars.create')->with('drivers', $drivers);
+   
     }
 
     // Store a new car

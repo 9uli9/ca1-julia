@@ -122,8 +122,7 @@ class DriverController extends Controller
         $driver->league_type = $request->league_type;
         $driver->save();
 
-        // Sync the selected cars
-        $driver->cars()->sync($request->input('car_id', []));
+
     
         // Redirect back to the 'drivers.index' route with a success message
         return redirect()->route('drivers.index')->with('status', 'Updated Driver');

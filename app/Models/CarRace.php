@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class CarRace extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'start_time',
+        'finish_time',
+        'position',
+        'car_id',
+        'race_id',
+    ];
 }

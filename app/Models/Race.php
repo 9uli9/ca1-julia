@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Race extends Model
 {
     use HasFactory;
+
+    // Define the many-to-many relationship with cars
+    public function cars()
+    {
+        return $this->belongsToMany(Car::class, 'car_race')
+            ->withPivot('start_time', 'finish_time', 'position');
+
+    }
 }

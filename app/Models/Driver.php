@@ -9,10 +9,10 @@ class Driver extends Model
 {
     use HasFactory;
 
-    // Establishes a One-To-Many Relationship Driver has many cars
-
+    // Define the many-to-many relationship with cars
     public function cars()
     {
-        return $this->hasMany(Car::class); 
+        return $this->belongsToMany(Car::class)
+            ->withPivot('start_time', 'finish_time', 'position');
     }
 }
