@@ -86,7 +86,8 @@ class DriverController extends Controller
         // Render the 'drivers.edit' view and pass the driver and cars data
         return view('drivers.edit', [
             'driver' => $driver,
-            'cars'=> $cars
+            'cars'=> $cars,
+            'leagueTypes' => ['f1', 'f2', 'f3']
         ]);
     }
 

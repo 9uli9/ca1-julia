@@ -132,14 +132,34 @@
                         <label style="color: black;" class="font-bold" for="league_type">League Type</label>
                         <select name="league_type" id="league_type" class="border border-gray-300 p-2 rounded w-full">
                             <option value="" selected disabled>Select League Type</option>
-                            <option value="f1" {{ old('league_type', $driver->league_type) == 'f1' ? 'selected' : '' }}>f1</option>
+                            @foreach ($leagueTypes as $type)
+                                <option value="{{ $type }}" {{ old('league_type', $driver->league_type) == $type ? 'selected' : '' }}>
+                                    {{ $type }}
+                                </option>
+                            @endforeach
+                            {{-- <option value="f1" {{ old('league_type', $driver->league_type) == 'f1' ? 'selected' : '' }}>f1</option>
                             <option value="f2" {{ old('league_type', $driver->league_type) == 'f2' ? 'selected' : '' }}>f2</option>
-                            <option value="f3" {{ old('league_type', $driver->league_type) == 'f3' ? 'selected' : '' }}>f3</option>
+                            <option value="f3" {{ old('league_type', $driver->league_type) == 'f3' ? 'selected' : '' }}>f3</option> --}}
                         </select>
                         @error('league_type')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    {{-- <div class="mb-4">
+                        <label style="color: black;" class="font-bold" for="driver">Driver</label>
+                        <select name="driver_id" id="driver_id" class="border border-gray-300 p-2 rounded w-full">
+                            <option value="" selected disabled>Select Driver</option>
+                            @foreach ($drivers as $driver)
+                                <option value="{{ $driver->id }}" {{ old('driver_id', $car->driver_id) == $driver->id ? 'selected' : '' }}>
+                                    {{ $driver->first_name }} {{ $driver->last_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('driver_id')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div> --}}
                     
 
 
