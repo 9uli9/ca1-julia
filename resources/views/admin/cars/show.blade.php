@@ -40,7 +40,7 @@
             <div class="flex-grow"></div>
 
             <div class="flex justify-end">
-                <a href="{{ route('cars.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
+                <a href="{{ route('admin.cars.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
             </div>
         </h2>
     </x-slot>
@@ -53,25 +53,36 @@
                         <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
                             <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                                 <tr class="bg-red dark:bg-black-800 border-b border-white-100 dark:border-white-700">
-                                    <th class="px-6 py-3 font-bold text-red">Brand</th>
+                                    <th class="px-6 py-3 font-bold text-red">Id</th>
+                                    <th class="px-6 py-3 font-bold text-red">Model</th>
+                                    <th class="px-6 py-3 font-bold text-red">Manufacturer</th>
+                                    <th class="px-6 py-3 font-bold text-red">Type</th>
+                                    <th class="px-6 py-3 font-bold text-red">Fuel</th>
                                     <th class="px-6 py-3 font-bold text-red">Colour</th>
+                                    <th class="px-6 py-3 font-bold text-red">VIN</th>
+                                    <th class="px-6 py-3 font-bold text-red">VRM</th>
                                     <th class="px-6 py-3 font-bold text-red">Driver</th>
-
                                     <th class="px-6 py-3 font-bold text-red">Admin Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-800">
                                 <tr class="bg-black dark:bg-black-800 border-b border-white-100 dark:border-white-700">
-                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->brand }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->id }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->model }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->manufacturer }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->type }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->fuel }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->colour }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vin }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vrm }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->driver->first_name }} {{ $car->driver->last_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                        <form method="POST" action="{{ route('cars.destroy', $car->id) }}" class="inline">
+                                        <form method="POST" action="{{ route('admin.cars.destroy', $car->id) }}" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900">Delete</button>
                                         </form>
-                                        <a href="{{ route('cars.edit', $car->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Edit</a>
+                                        <a href="{{ route('admin.cars.edit', $car->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Edit</a>
                                     </td>
                                 </tr>
                             </tbody>

@@ -1,31 +1,49 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Race;
 use App\Models\Car;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Auth;
 
 class DriverController extends Controller
 {
+
+    // public function __construct(){
+    //         Auth::user()->authorizeRoles('admin');
+    //      }
+
+
     // Shows all drivers
     public function index()
     {
-        // Retrieve all drivers from the database
-        $drivers = Driver::all();
+            //     Auth::user()->authorizeRoles('admin');
 
-        // Render the 'drivers.index' view and pass the drivers data
-        return view('drivers.index', [
-            'drivers' => $drivers 
-        ]);
+        // if(!Auth::user()->hasRole('admin')){
+        //     return to_route('user.drivers.index');
+        // }
+
+
+        // // Retrieve all drivers from the database
+        // $drivers = Driver::all();
+
+        // // Render the 'drivers.index' view and pass the drivers data
+        // return view('admin.drivers.index', [
+        //     'drivers' => $drivers 
+        // ]);
+        $drivers = Driver::paginate(10);
+        return view('admin.drivers.index')->with('drivers', $drivers);
     }
 
     // Show the create driver form
     public function create()
     {
-        return view('drivers.create');
+        return view('admin.drivers.create');
+        
     }
 
     // Store a new driver
@@ -36,7 +54,9 @@ class DriverController extends Controller
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
-            'league_type' => 'required|in:f1,f2,f3',
+            'league_type' => 'required|in: f1, f2, f3, rally, drag, street,
+            stock_car, go_karting,  hill_climb, time_attack, autocross, drift, sprint,
+            hovercraft_racing, rocket_league, podracing, mario_kart, wacky_racers, cyberpunk_speedway, fantasy_grand_prix',
         ];
 
         $messages = [
@@ -59,7 +79,7 @@ class DriverController extends Controller
         $driver->save();
 
         // Redirect back to the 'drivers.index' route with a success message
-        return redirect()->route('drivers.index')->with('status', 'Created a new Driver');
+        return redirect()->route('admin.drivers.index')->with('status', 'Created a new Driver');
     }
 
     // Show details of a specific driver
@@ -69,7 +89,7 @@ class DriverController extends Controller
         $driver = Driver::findOrFail($id);
 
         // Render the 'drivers.show' view and pass the driver data
-        return view('drivers.show', [
+        return view('admin.drivers.show', [
             'driver' => $driver
         ]);
     }
@@ -84,10 +104,13 @@ class DriverController extends Controller
         $cars = Car::all();
         
         // Render the 'drivers.edit' view and pass the driver and cars data
-        return view('drivers.edit', [
+        return view('admin.drivers.edit', [
             'driver' => $driver,
             'cars'=> $cars,
-            'leagueTypes' => ['f1', 'f2', 'f3']
+            'leagueTypes' => ['f1', 'f2', 'f3','rally', 'drag', 'street',
+            'stock_car', 'go_karting',  'hill_climb', 'time_attack', 'autocross', 'drift', 'sprint',
+            'hovercraft_racing', 'rocket_league', 'podracing', 'mario_kart', 'wacky_racers', 'cyberpunk_speedway', 'fantasy_grand_prix'
+]
         ]);
     }
 
@@ -99,7 +122,9 @@ class DriverController extends Controller
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
-            'league_type' => 'required|in:f1,f2,f3',
+            'league_type' => 'required|in: f1, f2, f3, rally, drag, street,
+            stock_car, go_karting,  hill_climb, time_attack, autocross, drift, sprint,
+            hovercraft_racing, rocket_league, podracing, mario_kart, wacky_racers, cyberpunk_speedway, fantasy_grand_prix',
             'car_id' => 'array',
         ];
     
@@ -126,7 +151,7 @@ class DriverController extends Controller
 
     
         // Redirect back to the 'drivers.index' route with a success message
-        return redirect()->route('drivers.index')->with('status', 'Updated Driver');
+        return redirect()->route('admin.drivers.index')->with('status', 'Updated Driver');
     }
   
     // Delete a specific driver
@@ -139,6 +164,6 @@ class DriverController extends Controller
         $driver->delete();
 
         // Redirect back to the 'drivers.index' route with a success message
-        return redirect()->route('drivers.index')->with('status', 'Driver deleted successfully!');
+        return redirect()->route('admin.drivers.index')->with('status', 'Driver deleted successfully!');
     }
 }

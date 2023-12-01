@@ -14,7 +14,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('races.store') }}" method="POST">
+                <form action="{{ route('admin.races.store') }}" method="POST">
                     @csrf
 
                     <div class="mb-4">
@@ -34,10 +34,15 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="difficulty"  style="color: black" class="font-bold">Difficulty</label>
-                        <input type="text" name="difficulty" id="difficulty" placeholder="Enter Difficulty" style="color: black;">
+                        <label style="color: black;" class="font-bold" for="difficulty">Difficulty</label>
+                        <select name="difficulty" id="difficulty" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                            <option value="" selected disabled>Select Difficulty</option>
+                            <option value="easy">Beginner</option>
+                            <option value="medium">Intermediate</option>
+                            <option value="hard">Expert</option>
+                        </select>
                         @error('difficulty')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 

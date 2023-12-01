@@ -9,7 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm ">
                 <div class="p-6 text-white">
-                    {{ __("You're logged in!") }}
+                    @if(auth()->user()->role === 'admin')
+                        {{ __("Welcome, Admin ") }}
+                    @else
+                        {{ __("Welcome, ") }}
+                    @endif
+                    <a href="{{ route('profile.edit') }}" class="text-white hover:underline">
+                        {{ auth()->user()->name }}
+                    </a>!
                 </div>
             </div>
         </div>

@@ -11,9 +11,7 @@
 
             <div class="flex-grow"></div>
 
-            <div class="flex justify-end">
-                <a href="{{ route('drivers.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
-            </div>
+
         </h2>
     </x-slot>
 
@@ -39,12 +37,12 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->age }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->league_type }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                        <form method="POST" action="{{ route('drivers.destroy', $driver->id) }}" class="inline">
+                                        <form method="POST" action="{{ route('admin.drivers.destroy', $driver->id) }}" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900">Delete</button>
                                         </form>
-                                        <a href="{{ route('drivers.edit', $driver->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Edit</a>
+                                        <a href="{{ route('admin.drivers.edit', $driver->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Edit</a>
                                     </td>
                                 </tr>
                             </tbody>

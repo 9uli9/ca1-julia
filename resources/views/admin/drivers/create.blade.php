@@ -87,7 +87,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('drivers.store') }}" method="POST">
+                <form action="{{ route('admin.drivers.store') }}" method="POST">
                     @csrf
 
                     <div class="mb-4">
@@ -121,7 +121,23 @@
                             <span>{{ $message }}</span>
                         @enderror
                     </div>
+{{-- 
 
+                    <div class="mb-4">
+                        <label for="league_type" style="color: black;" class="font-bold">League Type</label>
+                        <select name="league_type" id="league_type" class="border border-gray-300 p-2 rounded w-full">
+                            <option value="" selected disabled>Select League Type</option>
+                            @foreach ($leagueTypes as $type)
+                                <option value="{{ $type }}" {{ old('league_type', $driver->league_type) == $type ? 'selected' : '' }}>
+                                    {{ $type }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('league_type')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div> --}}
+                    
                     <div class="mb-4">
                         <label for="start_date" style="color: black " class="font-bold">Start Date</label>
                         <input type="date" name="start_date" id="start_date" style="color: black;">
@@ -132,7 +148,7 @@
 
                     <div class="mb-4">
                         <h4 style="color: black " class="font-bold">Cars</h4>
-                        @for ($i = 0; $i < 3; $i++)
+                        @for ($i = 0; $i < 2; $i++)
                             <div>
                                 <label style="color: black " class="font-bold">Car Brand</label>
                                 <input type="text" name="car_brands[]" placeholder="Enter Car Brand" style="color: black;">

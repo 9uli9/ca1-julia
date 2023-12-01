@@ -25,7 +25,10 @@
                             <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        Brand
+                                        Model
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Manufacturer
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Colour
@@ -40,14 +43,18 @@
                                 @forelse($cars as $car)
                                     <tr class="bg-black dark:bg-black-800 border-b border-white-100 dark:border-white-700">
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                            {{ $car->brand }}
+                                            {{ $car->model }}
                                         </td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                            {{ $car->manufacturer }}
+                                        </td>
+
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                             {{ $car->colour }}
                                         </td>
 
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                            <a href="{{ route('cars.show', ['car' => $car->id]) }}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Show</a>
+                                            <a href="{{ route('admin.cars.show', ['car' => $car->id]) }}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Show</a>
                                         </td>
                                     </tr>
                                 @empty

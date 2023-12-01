@@ -11,7 +11,7 @@
             <div class="flex-grow"></div>
 
             <div class="flex justify-end">
-                <a href="{{ route('races.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
+                <a href="{{ route('admin.races.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
             </div>
         </h2>
     </x-slot>
@@ -40,12 +40,12 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $race->max_capacity }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $race->start_date }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                        <form method="POST" action="{{ route('races.destroy', $race->id) }}" class="inline">
+                                        <form method="POST" action="{{ route('admin.races.destroy', $race->id) }}" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900">Delete</button>
                                         </form>
-                                        <a href="{{ route('races.edit', $race->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Edit</a>
+                                        <a href="{{ route('admin.races.edit', $race->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Edit</a>
                                     </td>
                                 </tr>
                             </tbody>

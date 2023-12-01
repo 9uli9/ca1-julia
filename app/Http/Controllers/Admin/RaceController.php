@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Race;
@@ -8,19 +8,23 @@ use App\Models\Car;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Auth;
 
 class RaceController extends Controller
 {
     // Shows all races
     public function index()
     {
-        // Retrieve all races from the database
-        $races = Race::all();
+        // // Retrieve all races from the database
+        // $races = Race::all();
 
-        // Render the 'races.index' view and pass the races data
-        return view('races.index', [
-            'races' => $races
-        ]);
+        // // Render the 'races.index' view and pass the races data
+        // return view('admin.races.index', [
+        //     'races' => $races
+        // ]);
+
+        $races = Race::paginate(10);
+        return view('admin.races.index')->with('races', $races);
     }
 
     // Show the create race form
@@ -30,7 +34,7 @@ class RaceController extends Controller
         $races = Race::all(); 
     
         // Render the 'races.create' view and pass the races data
-        return view('races.create', [
+        return view('admin.races.create', [
             'races' => $races, 
         ]);
     }
@@ -73,7 +77,7 @@ class RaceController extends Controller
         $race->save();
 
         // Redirect back to the 'races.index' route with a success message
-        return redirect()->route('races.index')->with('status', 'Created a new Race');
+        return redirect()->route('admin.races.index')->with('status', 'Created a new Race');
     }
 
     // Show details of a specific race
@@ -83,7 +87,7 @@ class RaceController extends Controller
         $race = Race::findOrFail($id);
 
         // Render the 'races.show' view and pass the race data
-        return view('races.show', [
+        return view('admin.races.show', [
             'race' => $race
         ]);
     }
@@ -95,7 +99,7 @@ class RaceController extends Controller
         $race = Race::findOrFail($id);
 
         // Render the 'races.edit' view and pass the race data
-        return view('races.edit', [
+        return view('admin.races.edit', [
             'race' => $race
         ]);
     }
@@ -141,7 +145,7 @@ class RaceController extends Controller
         $request->flash();
     
         // Redirect back to the 'races.index' route with a success message
-        return redirect()->route('races.index')->with('status', 'Updated Race');
+        return redirect()->route('admin.races.index')->with('status', 'Updated Race');
     }
     
 
@@ -155,6 +159,6 @@ class RaceController extends Controller
         $race->delete();
 
         // Redirect back to the 'races.index' route with a success message
-        return redirect()->route('races.index')->with('status', 'Selected race deleted successfully!');
+        return redirect()->route('admin.races.index')->with('status', 'Selected race deleted successfully!');
     }
 }

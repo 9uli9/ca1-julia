@@ -11,7 +11,7 @@
             <div class="flex-grow"></div>
 
             <div class="flex justify-end">
-                <a href="{{ route('races.show', $race->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Back</a>
+                <a href="{{ route('admin.races.show', $race->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Back</a>
             </div>
         </h2>
     </x-slot>
@@ -19,7 +19,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('races.update', $race->id) }}" method="POST">
+                <form action="{{ route('admin.races.update', $race->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -42,11 +42,17 @@
 
                     <div class="mb-4">
                         <label style="color: black;" class="font-bold" for="difficulty">Difficulty</label>
-                        <input type="text" name="difficulty" id="difficulty" value="{{ old('difficulty', $race->difficulty) }}" placeholder="Enter Difficulty" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <select name="difficulty" id="difficulty" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                            <option value="" selected disabled>Select Difficulty</option>
+                            <option value="easy">Beginner</option>
+                            <option value="medium">Intermediate</option>
+                            <option value="hard">Expert</option>
+                        </select>
                         @error('difficulty')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+                    
 
                     <div class="mb-4">
                         <label style="color: black;" class="font-bold" for="max_capacity">Max Capacity</label>
@@ -59,7 +65,7 @@
                     <div class="flex justify-between">
                         <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900 mb-4">Submit</button>
                 
-                        <form action="{{ route('races.destroy', $race->id) }}" method="POST">
+                        <form action="{{ route('admin.races.destroy', $race->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                 

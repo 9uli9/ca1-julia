@@ -91,7 +91,7 @@
             <div class="flex-grow"></div>
 
             <div class="flex justify-end">
-                <a href="{{ route('drivers.show', $driver->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Back</a>
+                <a href="{{ route('admin.drivers.show', $driver->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Back</a>
             </div>
         </h2>
     </x-slot>
@@ -99,7 +99,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('drivers.update', $driver->id) }}" method="POST">
+                <form action="{{ route('admin.drivers.update', $driver->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -167,7 +167,7 @@
                     <div class="flex justify-between">
                         <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900 mb-4">Submit</button>
                 
-                        <form action="{{ route('drivers.destroy', $driver->id) }}" method="POST">
+                        <form action="{{ route('admin.drivers.destroy', $driver->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                 
