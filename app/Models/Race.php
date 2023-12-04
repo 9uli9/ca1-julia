@@ -13,7 +13,7 @@ class Race extends Model
     public function cars()
     {
         return $this->belongsToMany(Car::class, 'car_race')
-            ->withPivot('start_time', 'finish_time', 'position');
-
+            ->withPivot('start_time', 'finish_time', 'position')
+            ->withTimestamps();
     }
 }

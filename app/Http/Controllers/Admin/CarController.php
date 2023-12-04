@@ -34,6 +34,7 @@ class CarController extends Controller
             'vin' => 'required|string|min:2|max:150',
             'vrm' => 'required|string|min:2|max:150',
             'driver_id' => 'required|integer|exists:drivers,id',
+            'car_image' => 'file|image',
         ];
 
         $messages = [
@@ -45,23 +46,34 @@ class CarController extends Controller
             'vin.required' => 'VIN is required',
             'vrm.required' => 'VRM is required',
             'driver_id.integer' => 'Driver ID must be an integer',
+            
         ];
+
+        $car_image = $request->file('car_image');
+        $extension = $car_image->getClientOriginalExtension();
+        $filename = date('Y-m-d-His') . "_" . $request->input('title') . "." . $extension;
+
+        $car_image->storeAs('public/images, $filename');
 
         $request->validate($rules, $messages);
 
-        $car = Car::create([
-            'model' => $request->model,
-            'manufacturer' => $request->manufacturer,
-            'type' => $request->type,
-            'fuel' => $request->fuel,
-            'colour' => $request->colour,
-            'vin' => $request->vin,
-            'vrm' => $request->vrm,
-            'driver_id' => $request->driver_id,
-        ]);
+               // Create a new Driver instance and fill it with request data
+               $car = new Car;
+               $car->model = $request->model;
+               $car->manufacturer = $request->manufacturer;
+               $car->type = $request->type;
+               $car->fuel = $request->fuel;
+               $car->colour = $request->colour;
+               $car->vin = $request->vin;
+               $car->vrm = $request->vrm;
+               $car->driver_id = $request->driver_id;
+               $car->car_image = $request->car_image;
+               $car->save();
+       
+               // Redirect back to the 'cars.index' route with a success message
+               return redirect()->route('admin.cars.index')->with('status', 'Created a new car');
+           }
 
-        return redirect()->route('admin.cars.index')->with('status', 'Created a new Car');
-    }
 
     public function show(string $id)
     {
@@ -129,4 +141,6 @@ class CarController extends Controller
 
         return redirect()->route('admin.cars.index')->with('status', 'Selected Car deleted successfully!');
     }
+
+
 }

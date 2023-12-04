@@ -53,6 +53,7 @@
                         <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
                             <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                                 <tr class="bg-red dark:bg-black-800 border-b border-white-100 dark:border-white-700">
+
                                     <th class="px-6 py-3 font-bold text-red">Id</th>
                                     <th class="px-6 py-3 font-bold text-red">Model</th>
                                     <th class="px-6 py-3 font-bold text-red">Manufacturer</th>
@@ -62,11 +63,13 @@
                                     <th class="px-6 py-3 font-bold text-red">VIN</th>
                                     <th class="px-6 py-3 font-bold text-red">VRM</th>
                                     <th class="px-6 py-3 font-bold text-red">Driver</th>
+                                    <th class="px-6 py-3 font-bold text-red">Image</th>
                                     <th class="px-6 py-3 font-bold text-red">Admin Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-800">
                                 <tr class="bg-black dark:bg-black-800 border-b border-white-100 dark:border-white-700">
+
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->id }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->model }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->manufacturer }}</td>
@@ -76,6 +79,14 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vin }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vrm }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->driver->first_name }} {{ $car->driver->last_name }}</td>
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                    @if($car->car_image)
+                                        <img width="150" src="{{ asset("storage/images/" . $car->car_image) }}" />
+                                    @else
+                                        <span>No Image Available</span>
+                                    @endif
+                                </td>
+
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                         <form method="POST" action="{{ route('admin.cars.destroy', $car->id) }}" class="inline">
                                             @csrf

@@ -137,24 +137,6 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="driver">Driver</label>
-                        <input type="text" name="driver" id="driver" value="{{ old('driver', $car->driver) }}" placeholder="Enter Driver" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
-                        @error('driver')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
-                    {{-- <div class="mb-4">
-                        <label for="driver_id" class="block font-bold mb-1">Select Driver:</label>
-                        <select name="driver_id" id="driver_id" class="border border-gray-300 p-2 rounded w-full">
-                            @foreach ($drivers as $driver)
-                                <option value="{{ $driver->id }}" {{ old('driver_id', $car->driver_id) == $driver->id ? 'selected' : '' }}>
-                                    {{ $driver->first_name }}{{ $driver->last_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div> --}}
 
                     <div class="mb-4">
                         <label style="color: black;" class="font-bold" for="driver">Driver</label>
@@ -170,9 +152,6 @@
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
-                    
-
-
 
                     <div class="flex justify-between">
                         <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900 mb-4">Submit</button>

@@ -66,6 +66,7 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        {{ $cars->links() }}
                     </div>
                 </ul>
             </div>

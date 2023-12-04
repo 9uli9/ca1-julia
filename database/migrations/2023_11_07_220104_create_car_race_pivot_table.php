@@ -8,7 +8,7 @@ class CreateCarRacePivotTable extends Migration
 {
     public function up()
     {
-        Schema::create('car_race', function (Blueprint $table) {
+        Schema::create('records', function (Blueprint $table) {
             $table->id(); // Auto-incrementing ID for the pivot table.
             $table->string('start_time'); // Column to store the start time.
             $table->string('finish_time'); // Column to store the finish time.
@@ -26,6 +26,6 @@ class CreateCarRacePivotTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('car_race'); // Drop the 'car_race' table.
+        Schema::dropIfExists('records'); // Drop the 'car_race' table.
     }
 }

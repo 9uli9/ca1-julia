@@ -8,8 +8,7 @@ use App\Http\Controllers\Admin\CarController as AdminCarController;
 use App\Http\Controllers\User\CarController as UserCarController;
 use App\Http\Controllers\Admin\RaceController as AdminRaceController;
 use App\Http\Controllers\User\RaceController as UserRaceController;
-use App\Http\Controllers\CarRaceController;
-
+use App\Http\Controllers\RecordsController;
 
 
 
@@ -86,6 +85,10 @@ Route::resource('/drivers', UserDriverController::class)
 ->only(['index', 'show']);
 Route::resource('/admin/drivers', AdminDriverController::class)->middleware(['auth', 'role:admin'])->names('admin.drivers');
 
+
+Route::get('/records', [RecordsController::class, 'showBestFinishTime'])
+->middleware(['auth', 'role:user,admin'])
+->name('records.index');
 
 
 Route::resource('/cars', UserCarController::class)

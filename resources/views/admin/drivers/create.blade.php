@@ -121,22 +121,7 @@
                             <span>{{ $message }}</span>
                         @enderror
                     </div>
-{{-- 
 
-                    <div class="mb-4">
-                        <label for="league_type" style="color: black;" class="font-bold">League Type</label>
-                        <select name="league_type" id="league_type" class="border border-gray-300 p-2 rounded w-full">
-                            <option value="" selected disabled>Select League Type</option>
-                            @foreach ($leagueTypes as $type)
-                                <option value="{{ $type }}" {{ old('league_type', $driver->league_type) == $type ? 'selected' : '' }}>
-                                    {{ $type }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('league_type')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
                     
                     <div class="mb-4">
                         <label for="start_date" style="color: black " class="font-bold">Start Date</label>

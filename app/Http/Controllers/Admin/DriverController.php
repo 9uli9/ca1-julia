@@ -13,30 +13,12 @@ use Auth;
 class DriverController extends Controller
 {
 
-    // public function __construct(){
-    //         Auth::user()->authorizeRoles('admin');
-    //      }
-
-
     // Shows all drivers
     public function index()
     {
-            //     Auth::user()->authorizeRoles('admin');
-
-        // if(!Auth::user()->hasRole('admin')){
-        //     return to_route('user.drivers.index');
-        // }
-
-
-        // // Retrieve all drivers from the database
-        // $drivers = Driver::all();
-
-        // // Render the 'drivers.index' view and pass the drivers data
-        // return view('admin.drivers.index', [
-        //     'drivers' => $drivers 
-        // ]);
         $drivers = Driver::paginate(10);
-        return view('admin.drivers.index')->with('drivers', $drivers);
+        return view('admin.drivers.index', ['drivers' => $drivers ]);
+
     }
 
     // Show the create driver form
@@ -114,10 +96,10 @@ class DriverController extends Controller
         ]);
     }
 
-    // Update an existing driver
+
     public function update(Request $request, string $id)
     {
-        // Define validation rules and custom error messages
+
         $rules = [
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
@@ -136,11 +118,9 @@ class DriverController extends Controller
             'league_type.in' => 'Invalid League Type',
             'car_id.array' => 'Please select at least one car',
         ];
-    
-        // Validate the request data
+
         $request->validate($rules, $messages);
     
-        // Find the driver by its ID
         $driver = Driver::findOrFail($id);
         $driver->first_name = $request->first_name;
         $driver->last_name = $request->last_name;
@@ -148,22 +128,15 @@ class DriverController extends Controller
         $driver->league_type = $request->league_type;
         $driver->save();
 
-
-    
-        // Redirect back to the 'drivers.index' route with a success message
         return redirect()->route('admin.drivers.index')->with('status', 'Updated Driver');
     }
   
     // Delete a specific driver
     public function destroy(string $id)
     {
-        // Find the driver by its ID
         $driver = Driver::findOrFail($id);
-    
-        // Delete the driver
         $driver->delete();
 
-        // Redirect back to the 'drivers.index' route with a success message
         return redirect()->route('admin.drivers.index')->with('status', 'Driver deleted successfully!');
     }
 }

@@ -57,6 +57,7 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        {{ $races->links() }}
                     </div>
                 </ul>
             </div>

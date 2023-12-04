@@ -11,17 +11,13 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @if(auth()->user()->role === 'user')
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white dark:text-red-200">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                    @elseif(auth()->user()->role === 'admin')
-                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" class="text-white dark:text-red-200">
-                            {{ __('Admin Dashboard') }}
-                        </x-nav-link>
-                    @endif
-                </div>
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+
+                <x-nav-link :href="route('user.cars.index')" :active="request()->routeIs('dashboard')">
+                    {{ __('Cars') }}
+                </x-nav-link>
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -30,11 +26,7 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.cars.index')" :active="request()->routeIs('cars')" class="text-white dark:text-red-200">
-                        {{ __('Cars') }}
-                    </x-nav-link>
-                </div>
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('user.races.index')" :active="request()->routeIs('races')" class="text-white dark:text-red-200">
@@ -42,11 +34,12 @@
                     </x-nav-link>
                 </div>
 
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('carraces.index')" :active="request()->routeIs('carraces')" class="text-white dark:text-red-200">
-                        {{ __('Past Races') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('records.index')" :active="request()->routeIs('records')" class="text-white dark:text-red-200">
+                        {{ __('Records') }}
                     </x-nav-link>
-                </div> --}}
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->

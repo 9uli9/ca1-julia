@@ -9,13 +9,6 @@ return new class extends Migration
 
     public function up(): void
     {
-        // Schema::create('cars', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('brand');
-        //     $table->string('colour');
-        //     $table->timestamps();
-        // });
-
 
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
@@ -26,7 +19,10 @@ return new class extends Migration
             $table->string('type');
             $table->string('vin');
             $table->string('vrm');
+            $table->unsignedBigInteger('driver_id');
             $table->timestamps();
+
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
         });
     }
 

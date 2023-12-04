@@ -62,6 +62,7 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        {{ $drivers->links() }}
                     </div>
                 </ul>
             </div>

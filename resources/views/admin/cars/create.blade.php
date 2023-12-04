@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight flex items-center">
-            Create Driver
+            Create Car
             <span class="icon-padding ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" height="1.25em" viewBox="0 0 320 512">
                     <style>svg{fill:#ffffff}</style>
@@ -16,13 +16,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.cars.update', $car->id) }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('admin.cars.store')}}" method="post">
+
                     @csrf
-                    @method('PUT')
+                    {{-- @method('PUT') --}}
 
                     <div class="mb-4">
-                        <label for="model" class="font-bold" style="color: black;">Model</label>
-                        <input type="text" name="model" id="model" value="{{ old('model', $car->model) }}" placeholder="Enter Model" class="text-black w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500">
+                        <label for="model" class="font-bold" style="color: black;">Models</label>
+                        <input type="text" name="model" id="model" placeholder="Enter Model" class="text-black w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500">
                         @error('model')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -30,7 +31,7 @@
 
                     <div class="mb-4">
                         <label for="manufacturer" class="font-bold" style="color: black;">Manufacturer</label>
-                        <input type="text" name="manufacturer" id="manufacturer" value="{{ old('manufacturer', $car->manufacturer) }}" placeholder="Enter Manufacturer" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <input type="text" name="manufacturer" id="manufacturer"  placeholder="Enter Manufacturer" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                         @error('manufacturer')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -38,7 +39,7 @@
 
                     <div class="mb-4">
                         <label for="type" class="font-bold" style="color: black;">Type</label>
-                        <input type="text" name="type" id="type" value="{{ old('type', $car->type) }}" placeholder="Enter Type" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <input type="text" name="type" id="type"  placeholder="Enter Type" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                         @error('type')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -46,7 +47,7 @@
 
                     <div class="mb-4">
                         <label for="fuel" class="font-bold" style="color: black;">Fuel</label>
-                        <input type="text" name="fuel" id="fuel" value="{{ old('fuel', $car->fuel) }}" placeholder="Enter Fuel" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <input type="text" name="fuel" id="fuel"  placeholder="Enter Fuel" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                         @error('fuel')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -54,7 +55,7 @@
 
                     <div class="mb-4">
                         <label for="colour" class="font-bold" style="color: black;">Colour</label>
-                        <input type="text" name="colour" id="colour" value="{{ old('colour', $car->colour) }}" placeholder="Enter Colour" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <input type="text" name="colour" id="colour"  placeholder="Enter Colour" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                         @error('colour')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -62,7 +63,7 @@
 
                     <div class="mb-4">
                         <label for="vin" class="font-bold" style="color: black;">VIN</label>
-                        <input type="text" name="vin" id="vin" value="{{ old('vin', $car->vin) }}" placeholder="Enter VIN" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <input type="text" name="vin" id="vin"  placeholder="Enter VIN" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                         @error('vin')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -70,39 +71,35 @@
 
                     <div class="mb-4">
                         <label for="vrm" class="font-bold" style="color: black;">VRM</label>
-                        <input type="text" name="vrm" id="vrm" value="{{ old('vrm', $car->vrm) }}" placeholder="Enter VRM" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
+                        <input type="text" name="vrm" id="vrm"  placeholder="Enter VRM" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                         @error('vrm')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
                     
-                    {{-- <div class="mb-4">
-                        <label for="driver_id" class="block font-bold mb-1" placeholder="Select Driver">Select Driver:</label>
+                    <div class="mb-4">
+                        <label style="color: black;" for="driver_id" class="block font-bold mb-1" placeholder="Select Driver">Select Driver:</label>
                         <select name="driver_id" id="driver_id" class="border border-gray-300 p-2 w-full">
                             <option value="" disabled selected>Select Driver</option>
                             @foreach ($drivers as $driver)
                                 <option value="{{ $driver->id }}">{{ $driver->first_name }} {{ $driver->last_name }}</option>
                             @endforeach
                         </select>
-                    </div> --}}
+                    </div>
+
 
                     <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="driver">Driver</label>
-                        <select name="driver_id" id="driver_id" class="border border-gray-300 p-2 rounded w-full">
-                            <option value="" selected disabled>Select Driver</option>
-                            @foreach ($drivers as $driver)
-                                <option value="{{ $driver->id }}" {{ old('driver_id', $car->driver_id) == $driver->id ? 'selected' : '' }}>
-                                    {{ $driver->first_name }} {{ $driver->last_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('driver_id')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
+                    <label style="color: black;" for="car_image" class="block font-bold mb-1">Select Image</label>
+                    <input style="color: black;"
+                        type="file"
+                        name="car_image"
+                        placeholder="Car image"
+                        class="w-full mt-6"
+                        field="car_image"
+                        />
                     </div>
                    
-
                     <button class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900" type="submit">Submit</button>
                 </form>
             </div>
