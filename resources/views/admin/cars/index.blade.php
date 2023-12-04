@@ -33,6 +33,9 @@
                                     <th scope="col" class="px-6 py-3">
                                         Colour
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Image
+                                    </th>
 
                                     <th scope="col" class="px-6 py-3">
                                         Actions
@@ -51,6 +54,14 @@
 
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                             {{ $car->colour }}
+                                        </td>
+
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                            @if($car->car_image)
+                                                <img width="50" src="{{ asset("storage/images/" . $car->car_image) }}" alt="Img" />
+                                            @else
+                                                <span>No Image Available</span>
+                                            @endif
                                         </td>
 
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">

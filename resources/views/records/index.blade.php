@@ -39,9 +39,10 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->model }} ({{ $car->vrm }})</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                         @foreach ($car->races as $race)
-                                            {{ $race->location }} {{ $race->finish_time }} {{ $race->position }}<br>
+                                            {{ $race->pivot->location }} {{ $race->pivot->finish_time }} {{ $race->pivot->position }}<br>
                                         @endforeach
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                             

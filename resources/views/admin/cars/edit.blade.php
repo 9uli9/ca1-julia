@@ -77,7 +77,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.cars.update', $car->id) }}" method="POST">
+                <form  enctype="multipart/form-data" action="{{ route('admin.cars.update', $car->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -152,6 +152,20 @@
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="mb-4">
+                        <label style="color: black;" class="font-bold" for="car_image">Car Image</label>
+                        <input type="file" name="car_image" id="car_image" class="border border-gray-300 p-2 rounded w-full" value="{{ old('car_image', $car->car_image) }}">
+                        @error('car_image')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                        @if($car->car_image)
+                            <div class="mt-2">
+                                <img width="100" src="{{ asset("storage/images/" . $car->car_image) }}" alt="Current Car Image">
+                            </div>
+                        @endif
+                    </div>
+                    
 
                     <div class="flex justify-between">
                         <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900 mb-4">Submit</button>

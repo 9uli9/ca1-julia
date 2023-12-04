@@ -52,8 +52,8 @@ class CarController extends Controller
         $car_image = $request->file('car_image');
         $extension = $car_image->getClientOriginalExtension();
         $filename = date('Y-m-d-His') . "_" . $request->input('title') . "." . $extension;
+        $car_image->storeAs('public/images', $filename);
 
-        $car_image->storeAs('public/images, $filename');
 
         $request->validate($rules, $messages);
 
@@ -67,7 +67,7 @@ class CarController extends Controller
                $car->vin = $request->vin;
                $car->vrm = $request->vrm;
                $car->driver_id = $request->driver_id;
-               $car->car_image = $request->car_image;
+               $car->car_image = $filename;
                $car->save();
        
                // Redirect back to the 'cars.index' route with a success message
@@ -104,6 +104,7 @@ class CarController extends Controller
             'vin' => 'required|string|min:2|max:150',
             'vrm' => 'required|string|min:2|max:150',
             'driver_id' => 'required|integer|exists:drivers,id',
+            'car_image' => 'file|image',
         ];
 
         $messages = [
@@ -129,6 +130,7 @@ class CarController extends Controller
             'vin' => $request->vin,
             'vrm' => $request->vrm,
             'driver_id' => $request->driver_id,
+            'car_image' => $request->car_image
         ]);
 
         return redirect()->route('admin.cars.index')->with('status', 'Updated Car');

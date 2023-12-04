@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCarRacePivotTable extends Migration
+class CreateRecordsPivotTable extends Migration
 {
     public function up()
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id(); // Auto-incrementing ID for the pivot table.
-            $table->string('start_time'); // Column to store the start time.
-            $table->string('finish_time'); // Column to store the finish time.
+            $table->string('start_time')->nullable(); // Column to store the start time.
+            $table->string('finish_time')->nullable(); // Column to store the finish time.
             $table->integer('position')->nullable(); // Column to store the position, which can be nullable.
             $table->unsignedBigInteger('car_id'); // Foreign key referencing 'id' in the 'cars' table.
             $table->unsignedBigInteger('race_id'); // Foreign key referencing 'id' in the 'races' table.

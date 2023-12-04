@@ -80,12 +80,12 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vrm }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->driver->first_name }} {{ $car->driver->last_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                    @if($car->car_image)
-                                        <img width="150" src="{{ asset("storage/images/" . $car->car_image) }}" />
-                                    @else
-                                        <span>No Image Available</span>
-                                    @endif
-                                </td>
+                                        @if($car->car_image)
+                                            <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
+                                        @else
+                                            <span>No Image Available</span>
+                                        @endif
+                                    </td>
 
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                         <form method="POST" action="{{ route('admin.cars.destroy', $car->id) }}" class="inline">

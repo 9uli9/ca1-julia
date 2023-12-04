@@ -25,7 +25,7 @@ class Car extends Model
     public function races()
     {
 
-        return $this->belongsToMany(Race::class, 'car_race')
+        return $this->belongsToMany(Race::class, 'records')
             ->withPivot('start_time', 'finish_time', 'position')
             ->withTimestamps();
 
@@ -36,4 +36,6 @@ class Car extends Model
     {
         return $this->belongsTo(Driver::class);
     }
+
+    
 }
