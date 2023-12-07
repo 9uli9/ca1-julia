@@ -15,13 +15,6 @@ class RaceController extends Controller
     // Shows all races
     public function index()
     {
-        // // Retrieve all races from the database
-        // $races = Race::all();
-
-        // // Render the 'races.index' view and pass the races data
-        // return view('admin.races.index', [
-        //     'races' => $races
-        // ]);
 
         $races = Race::paginate(10);
         return view('admin.races.index')->with('races', $races);
@@ -46,7 +39,7 @@ class RaceController extends Controller
         $rules = [
             'title' => 'required|string|min:2|max:150',
             'location' => 'required|string|min:2|max:150',
-            'difficulty' => 'required|in:Beginner,Intermediate,Expert',
+            'difficulty' => 'required|string|in:Beginner,Intermediate,Expert',
             'max_capacity' => 'required|integer', 
             'start_date' => 'required|date', 
 
@@ -55,8 +48,7 @@ class RaceController extends Controller
         $messages = [
             'title.required' => 'Title is required',
             'location.required' => 'Location is required',
-            'difficulty.required' => 'Difficulty is required',
-            'difficulty.in' => 'Invalid Difficulty',
+            'difficulty' => 'Difficulty is required',
             'max_capacity.required' => 'Maximum Capacity is required',
             'start_date.required' => 'Start Date is required',
 
@@ -92,45 +84,42 @@ class RaceController extends Controller
         ]);
     }
 
-    // Edit a specific race
+    // Edit A Race
     public function edit(string $id)
     {
-        // Find the race by its ID
         $race = Race::findOrFail($id);
 
-        // Render the 'races.edit' view and pass the race data
         return view('admin.races.edit', [
             'race' => $race
         ]);
     }
 
-    // Update an existing race
+    // Update A Race
     public function update(Request $request, string $id)
     {
-        // Define validation rules and custom error messages
+       
         $rules = [
             'title' => 'required|string|min:2|max:150',
             'location' => 'required|string|min:2|max:150',
-            'difficulty' => 'required|in:Beginner,Intermediate,Expert',
+            'difficulty' => 'required|string|in:Beginner,Intermediate,Expert',
             'max_capacity' => 'required|integer', 
-            'start_date' => 'required|integer', 
+            'start_date' => 'required|date', 
 
         ];
     
         $messages = [
             'title.required' => 'Title is required',
             'location.required' => 'Location is required',
-            'difficulty.required' => 'Difficulty is required',
-            'difficulty.in' => 'Invalid Difficulty',
+            'difficulty' => 'Difficulty is required',
             'max_capacity.required' => 'Maximum Capacity is required',
             'start_date.required' => 'Start Date is required',
 
         ];
     
-        // Validate the request data
+        // Validating A Race
+
         $request->validate($rules, $messages);
-    
-        // Find the race by its ID
+
         $race = Race::findOrFail($id);
         $race->title = $request->title;
         $race->location = $request->location;
@@ -138,27 +127,19 @@ class RaceController extends Controller
         $race->max_capacity = $request->max_capacity; 
         $race->start_date = $request->start_date;
 
-        // Save the updated race to the database
         $race->save();
-    
-        // Set old input manually
         $request->flash();
     
-        // Redirect back to the 'races.index' route with a success message
+
         return redirect()->route('admin.races.index')->with('status', 'Updated Race');
     }
     
 
-    // Delete a specific race
+    // Delete A Race
     public function destroy(string $id)
     {
-        // Find the race by its ID
         $race = Race::findOrFail($id);
-
-        // Delete the race
         $race->delete();
-
-        // Redirect back to the 'races.index' route with a success message
         return redirect()->route('admin.races.index')->with('status', 'Selected race deleted successfully!');
     }
 }

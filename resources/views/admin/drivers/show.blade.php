@@ -24,10 +24,9 @@
                         <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
                             <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                                 <tr class="bg-red dark:bg-black-800 border-b border-white-100 dark:border-white-700">
-                                    <th class="px-6 py-3 font-bold text-red">first_name</th>
-                                    <th class="px-6 py-3 font-bold text-red">last_name</th>
-                                    <th class="px-6 py-3 font-bold text-red">age</th>
-                                    <th class="px-6 py-3 font-bold text-red">League Type</th>
+                                    <th class="px-6 py-3 font-bold text-red">First Name</th>
+                                    <th class="px-6 py-3 font-bold text-red">Last Name</th>
+                                    <th class="px-6 py-3 font-bold text-red">Age</th>
                                     <th class="px-6 py-3 font-bold text-red">Admin Actions</th>
                                 </tr>
                             </thead>
@@ -36,7 +35,10 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->first_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->last_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->age }}</td>
-                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->league_type }}</td>
+            
+
+                            </td>
+
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                         <form method="POST" action="{{ route('admin.drivers.destroy', $driver->id) }}" class="inline">
                                             @csrf

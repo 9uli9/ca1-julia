@@ -52,43 +52,12 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="league_type">League Type</label>
-                        <select name="league_type" id="league_type" class="border border-gray-300 p-2 rounded w-full">
-                            <option value="" selected disabled>Select League Type</option>
-                            @foreach ($leagueTypes as $type)
-                                <option value="{{ $type }}" {{ old('league_type', $driver->league_type) == $type ? 'selected' : '' }}>
-                                    {{ $type }}
-                                </option>
-                            @endforeach
-
-                        </select>
-                        @error('league_type')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-    
-
-                    <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="cars">Cars</label>
-                        <select name="car_ids[]" id="car_ids" class="border border-gray-300 p-2 rounded w-full" multiple>
-                            <option value="" disabled>Select Cars</option>
-                            @foreach ($cars as $car)
-                                <option value="{{ $car->id }}" {{ in_array($car->id, old('car_ids', $driver->cars->pluck('id')->toArray()) ?: []) ? 'selected' : '' }}>
-                                    {{ $car->model }} ({{ $car->vrm }})
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('car_ids')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div>
+   
                     
                     
                     
                     <div class="flex justify-between">
-                        <form action="{{ route('admin.drivers.update', $car->id) }}" method="POST">
+                        <form action="{{ route('admin.drivers.update', $driver->id) }}" method="POST">
                             @csrf
                         <button type="submit" class="inline-block bg-red-600 text-white px-4 py-2 font-bold hover:bg-red-800 mb-4">Submit</button>
                         </form>

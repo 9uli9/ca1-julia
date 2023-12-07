@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('type');
             $table->string('vin');
             $table->string('vrm');
-            // $table->unsignedBigInteger('driver_id');
             $table->timestamps();
 
-            // $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
+     
         });
     }
 

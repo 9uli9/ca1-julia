@@ -43,15 +43,16 @@
                     <div class="mb-4">
                         <label style="color: black;" class="font-bold" for="difficulty">Difficulty</label>
                         <select name="difficulty" id="difficulty" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
-                            <option value="" selected disabled>Select Difficulty</option>
-                            <option value="easy">Beginner</option>
-                            <option value="medium">Intermediate</option>
-                            <option value="hard">Expert</option>
+                            <option value="" disabled>Select Difficulty</option>
+                            <option value="Beginner" {{ old('difficulty', $race->difficulty) === 'Beginner' ? 'selected' : '' }}>Beginner</option>
+                            <option value="Intermediate" {{ old('difficulty', $race->difficulty) === 'Intermediate' ? 'selected' : '' }}>Intermediate</option>
+                            <option value="Expert" {{ old('difficulty', $race->difficulty) === 'Expert' ? 'selected' : '' }}>Expert</option>
                         </select>
                         @error('difficulty')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+                    
                     
 
                     <div class="mb-4">
@@ -63,7 +64,8 @@
                     </div>
 
                     <div class="flex justify-between">
-                        <form action="{{ route('admin.races.update', $car->id) }}" method="POST">
+                        
+                        <form action="{{ route('admin.races.update', $race->id) }}" method="POST">
                             @csrf
                         <button type="submit" class="inline-block bg-red-600 text-white px-4 py-2 font-bold hover:bg-red-800 mb-4">Submit</button>
                         </form>
