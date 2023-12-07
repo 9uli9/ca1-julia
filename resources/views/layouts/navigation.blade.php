@@ -2,50 +2,48 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
+            <div class="flex items-center">
+                <img src="https://iadt-my.sharepoint.com/personal/n00220743_iadt_ie/Documents/Year%202/Year%202%20Semester%201/Advanced%20Web%20Design/MyLaravelApps/Frame%203.png?Web=1" alt="RaceHub Central" class="w-full h-auto">
+
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-white dark:text-red-200" />
-                    </a>
+                    <a href="{{ route('dashboard') }}"></a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('user.cars.index')" :active="request()->routeIs('dashboard')">
-                    {{ __('Cars') }}
-                </x-nav-link>
-
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.drivers.index')" :active="request()->routeIs('drivers')" class="text-white dark:text-red-200">
-                        {{ __('Drivers') }}
-                    </x-nav-link>
-                </div>
-
-
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.races.index')" :active="request()->routeIs('races')" class="text-white dark:text-red-200">
-                        {{ __('Races') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('records.index')" :active="request()->routeIs('records')" class="text-white dark:text-red-200">
-                        {{ __('Records') }}
-                    </x-nav-link>
-                </div>
-
             </div>
 
+            <!-- Navigation Links -->
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-red-500">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+            </div>
+            
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-nav-link :href="route('user.cars.index')" :active="request()->routeIs('cars')" class="text-white hover:text-red-500">
+                    {{ __('Cars') }}
+                </x-nav-link>
+            </div>
+            
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-nav-link :href="route('user.drivers.index')" :active="request()->routeIs('drivers')" class="text-white hover:text-red-500">
+                    {{ __('Drivers') }}
+                </x-nav-link>
+            </div>
+            
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-nav-link :href="route('user.races.index')" :active="request()->routeIs('races')" class="text-white hover:text-red-500">
+                    {{ __('Races') }}
+                </x-nav-link>
+            </div>
+            
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-nav-link :href="route('records.index')" :active="request()->routeIs('records')" class="text-white hover:text-red-500">
+                    {{ __('Records') }}
+                </x-nav-link>
+            </div>
+            
+
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6 flex-grow justify-end">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white dark:text-red-200 bg-red-800 dark:bg-red-700 hover:text-red-900 dark:hover:text-red-300 focus:outline-none transition ease-in-out duration-150">
@@ -69,8 +67,8 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')" class="text-white dark:text-red-200"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
