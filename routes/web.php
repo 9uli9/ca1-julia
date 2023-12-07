@@ -81,15 +81,6 @@ Route::resource('/drivers', UserDriverController::class)
 ->only(['index', 'show']);
 Route::resource('/admin/drivers', AdminDriverController::class)->middleware(['auth', 'role:admin'])->names('admin.drivers');
 
-
-
-Route::resource('/records', UserRecordsController::class)
-->middleware(['auth', 'role:user,admin'])
-->names('user.records')
-->only(['index', 'show']);
-Route::resource('/admin/records', AdminRecordsController::class)->middleware(['auth', 'role:admin'])->names('admin.records');
-
-
 Route::resource('/cars', UserCarController::class)
 ->middleware(['auth', 'role:user,admin'])
 ->names('user.cars')
@@ -101,5 +92,11 @@ Route::resource('/races', UserRaceController::class)
 ->names('user.races')
 ->only(['index', 'show']);
 Route::resource('/admin/races', AdminRaceController::class)->middleware(['auth', 'role:admin'])->names('admin.races');
+
+Route::resource('/records', UserRecordsController::class)
+->middleware(['auth', 'role:user,admin'])
+->names('user.records')
+->only(['index', 'show']);
+Route::resource('/admin/records', AdminRecordsController::class)->middleware(['auth', 'role:admin'])->names('admin.records');
 
 require __DIR__.'/auth.php';

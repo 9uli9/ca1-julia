@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Driver extends Model
-{
-    use HasFactory;
-
-
-
-    public function cars()
-    {
+class Driver extends Model {
+    public function cars() {
         return $this->hasMany(Car::class);
+    }
+
+    public function races() {
+        return $this->belongsToMany(Race::class);
     }
 }

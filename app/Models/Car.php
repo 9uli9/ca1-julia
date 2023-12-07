@@ -21,17 +21,6 @@ class Car extends Model
         'car_image'
     ];
 
-    // Define the many-to-many relationship with races
-    public function races()
-    {
-
-        return $this->belongsToMany(Race::class, 'records')
-            ->withPivot('start_time', 'finish_time', 'position')
-            ->withTimestamps();
-
-    }
-
-    // Define the one-to-many relationship with drivers
     public function driver()
     {
         return $this->belongsTo(Driver::class);

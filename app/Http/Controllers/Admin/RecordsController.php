@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Race;
@@ -8,16 +8,18 @@ use App\Models\Car;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Auth;
 
 class RecordsController extends Controller
 {
-    public function showBestFinishTime()
+    public function index()
     {
-
-        $cars = Car::with(['races' => function ($query) {
-            $query->orderBy('finish_time', 'asc');
-        }, 'driver'])->get();
-
-        return view('records.index', compact('cars'));
+        $cars = Car::all();
+        $drivers = Driver::all();
+        $races = Race::all();
+    
+        return view('admin.records.index', compact('cars', 'drivers', 'races'));
     }
+
+    
 }
