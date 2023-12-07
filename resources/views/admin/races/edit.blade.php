@@ -63,7 +63,10 @@
                     </div>
 
                     <div class="flex justify-between">
-                        <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900 mb-4">Submit</button>
+                        <form action="{{ route('admin.races.update', $car->id) }}" method="POST">
+                            @csrf
+                        <button type="submit" class="inline-block bg-red-600 text-white px-4 py-2 font-bold hover:bg-red-800 mb-4">Submit</button>
+                        </form>
                 
                         <form action="{{ route('admin.races.destroy', $race->id) }}" method="POST">
                             @csrf

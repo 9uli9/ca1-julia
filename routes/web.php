@@ -2,13 +2,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DriverController as AdminDriverController;
 use App\Http\Controllers\User\DriverController as UserDriverController;
 use App\Http\Controllers\Admin\CarController as AdminCarController;
 use App\Http\Controllers\User\CarController as UserCarController;
 use App\Http\Controllers\Admin\RaceController as AdminRaceController;
 use App\Http\Controllers\User\RaceController as UserRaceController;
-use App\Http\Controllers\RecordsController;
+use App\Http\Controllers\Admin\RecordsController as AdminRecordsController;
+use App\Http\Controllers\User\RecordsController as UserRecordsController;
 
 
 
@@ -59,16 +61,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
-    $user = auth()->user();
-
-    if ($user->role === 'admin') {
-        return redirect()->route('admin.dashboard');
-    }
-
-    // For regular users
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', 
+[DashboardController::class, 'index'])
+->middleware(['auth', 'verified'])
+->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -86,9 +82,12 @@ Route::resource('/drivers', UserDriverController::class)
 Route::resource('/admin/drivers', AdminDriverController::class)->middleware(['auth', 'role:admin'])->names('admin.drivers');
 
 
-Route::get('/records', [RecordsController::class, 'showBestFinishTime'])
+
+Route::resource('/records', UserRecordsController::class)
 ->middleware(['auth', 'role:user,admin'])
-->name('records.index');
+->names('user.records')
+->only(['index', 'show']);
+Route::resource('/admin/records', AdminRecordsController::class)->middleware(['auth', 'role:admin'])->names('admin.records');
 
 
 Route::resource('/cars', UserCarController::class)

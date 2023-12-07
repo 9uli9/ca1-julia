@@ -1,14 +1,14 @@
 <?php
 
 
-use App\Models\CarRace;
+use App\Models\Record;
 use App\Models\Car;
 use App\Models\Race;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CarRaceFactory extends Factory
+class RecordFactory extends Factory
 {
-    protected $model = CarRace::class;
+    protected $model = Record::class;
 
     public function definition(): array
     {

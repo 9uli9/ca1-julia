@@ -1,33 +1,7 @@
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            Show Car
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <p>{{ $car->brand }}</p>
-                <p>{{ $car->colour }}</p>
-                <p>{{ $car->league_type }}</p>
 
-                <div class="mt-4">
-                    <a href="{{ route('cars.edit', $car->id) }}" class="inline-block bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 font-bold hover:bg-blue-800 dark:hover:bg-blue-900">Edit</a>
-
-                    <form method="POST" action="{{ route('cars.destroy', $car->id) }}" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}
-
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.admin')
+@section('header')
         <h2 class="font-semibold text-xl text-white leading-tight flex items-center space-x-2">
             Show Car Details
             <span class="icon-padding">
@@ -39,13 +13,29 @@
 
             <div class="flex-grow"></div>
 
-            <div class="flex justify-end">
-                <a href="{{ route('admin.cars.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
-            </div>
-        </h2>
-    </x-slot>
 
+        </h2>
+    @endsection
+
+    @section('content')
     <div class="py-12">
+
+        <div class="py-12 bg-black dark:bg-red-800">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class=" flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm mb-2">
+                    @if($car->car_image)
+                    <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
+                @else
+                    <span>No Image Available</span>
+                @endif
+
+                <p>Top Speed: 675,000,000 miles per hour</p>
+           
+                </div>
+            </div>
+        </div>
+
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <ul role="list" class="divide-red-100 dark:divide-red-700">
@@ -98,15 +88,12 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        
                     </div>
                 </ul>
             </div>
         </div>
-    </div>
-    
 
-    
-    
-    
-    
-</x-app-layout>
+    </div>
+    @endsection

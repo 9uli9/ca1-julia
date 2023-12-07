@@ -1,6 +1,6 @@
 
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.admin')
+@section('header')
         <h2 class="font-semibold text-xl text-white leading-tight flex items-center">
             Edit Driver Details
             <span class="icon-padding ml-2">
@@ -17,8 +17,9 @@
                 <a href="{{ route('admin.drivers.show', $driver->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Back</a>
             </div>
         </h2>
-    </x-slot>
+   @endsection
 
+   @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -67,20 +68,7 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="car">Car</label>
-                        <select name="car_id" id="car_id" class="border border-gray-300 p-2 rounded w-full">
-                            <option value="" selected disabled>Select Car</option>
-                            @foreach ($cars as $car)
-                                <option value="{{ $car->id }}" {{ old('car_id', $driver->car_id) == $car->id ? 'selected' : '' }}>
-                                    {{ $car->model }} ({{ $car->vrm }})
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('car_id')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
+    
 
                     <div class="mb-4">
                         <label style="color: black;" class="font-bold" for="cars">Cars</label>
@@ -100,7 +88,10 @@
                     
                     
                     <div class="flex justify-between">
-                        <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900 mb-4">Submit</button>
+                        <form action="{{ route('admin.drivers.update', $car->id) }}" method="POST">
+                            @csrf
+                        <button type="submit" class="inline-block bg-red-600 text-white px-4 py-2 font-bold hover:bg-red-800 mb-4">Submit</button>
+                        </form>
                 
                         <form action="{{ route('admin.drivers.destroy', $driver->id) }}" method="POST">
                             @csrf
@@ -113,5 +104,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
-
+@endsection

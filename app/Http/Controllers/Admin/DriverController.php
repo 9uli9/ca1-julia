@@ -24,7 +24,9 @@ class DriverController extends Controller
     // Show the create driver form
     public function create()
     {
-        return view('admin.drivers.create');
+        $cars = Car::all();
+
+        return view('admin.drivers.create', ['cars' => $cars]);
         
     }
 
@@ -45,8 +47,7 @@ class DriverController extends Controller
             'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
             'age.required' => 'Age is required',
-            'league_type.required' => 'League Type is required',
-            'league_type.in' => 'Invalid League Type',
+            'league_type.required' => 'League Type is required'
         ];
 
         // Validate the request data

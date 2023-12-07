@@ -18,28 +18,36 @@
             </div>
             
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('user.cars.index')" :active="request()->routeIs('cars')" class="text-white hover:text-red-500">
+                <x-nav-link :href="route('admin.cars.index')" :active="request()->routeIs('cars')" class="text-white hover:text-red-500">
                     {{ __('Cars') }}
                 </x-nav-link>
             </div>
+
+
             
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('user.drivers.index')" :active="request()->routeIs('drivers')" class="text-white hover:text-red-500">
+                <x-nav-link :href="route('admin.drivers.index')" :active="request()->routeIs('drivers')" class="text-white hover:text-red-500">
                     {{ __('Drivers') }}
                 </x-nav-link>
             </div>
+
+
             
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('user.races.index')" :active="request()->routeIs('races')" class="text-white hover:text-red-500">
+                <x-nav-link :href="route('admin.races.index')" :active="request()->routeIs('races')" class="text-white hover:text-red-500">
                     {{ __('Races') }}
                 </x-nav-link>
             </div>
+
+
             
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('user.records.index')" :active="request()->routeIs('records')" class="text-white hover:text-red-500">
+                <x-nav-link :href="route('admin.records.index')" :active="request()->routeIs('records')" class="text-white hover:text-red-500">
                     {{ __('Records') }}
                 </x-nav-link>
             </div>
+
+
             
 
             <!-- Settings Dropdown -->

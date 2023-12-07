@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Driver;
@@ -36,7 +37,7 @@ class CarController extends Controller
             'driver_id' => 'required|integer|exists:drivers,id',
             'car_image' => 'file|image',
         ];
-
+    
         $messages = [
             'model.required' => 'Model is required',
             'manufacturer.required' => 'Manufacturer is required',
@@ -46,33 +47,34 @@ class CarController extends Controller
             'vin.required' => 'VIN is required',
             'vrm.required' => 'VRM is required',
             'driver_id.integer' => 'Driver ID must be an integer',
-            
         ];
-
-        $car_image = $request->file('car_image');
-        $extension = $car_image->getClientOriginalExtension();
-        $filename = date('Y-m-d-His') . "_" . $request->input('title') . "." . $extension;
-        $car_image->storeAs('public/images', $filename);
-
-
+    
+        // Validate the request
         $request->validate($rules, $messages);
-
-               // Create a new Driver instance and fill it with request data
-               $car = new Car;
-               $car->model = $request->model;
-               $car->manufacturer = $request->manufacturer;
-               $car->type = $request->type;
-               $car->fuel = $request->fuel;
-               $car->colour = $request->colour;
-               $car->vin = $request->vin;
-               $car->vrm = $request->vrm;
-               $car->driver_id = $request->driver_id;
-               $car->car_image = $filename;
-               $car->save();
-       
-               // Redirect back to the 'cars.index' route with a success message
-               return redirect()->route('admin.cars.index')->with('status', 'Created a new car');
-           }
+    
+        // Create a new Car instance and fill it with request data
+        $car = new Car;
+        $car->model = $request->model;
+        $car->manufacturer = $request->manufacturer;
+        $car->type = $request->type;
+        $car->fuel = $request->fuel;
+        $car->colour = $request->colour;
+        $car->vin = $request->vin;
+        $car->vrm = $request->vrm;
+        $car->driver_id = $request->driver_id;
+    
+        // Check if a new image file is uploaded
+        if ($request->hasFile('car_image')) {
+            $car_image = $request->file('car_image');
+            $filename = date('Y-m-d-His') . '_' . $request->model . '.' . $car_image->getClientOriginalExtension();
+            $car_image->storeAs('public/images', $filename);
+            $car->car_image = $filename;
+        }
+    
+        $car->save();
+        return redirect()->route('admin.cars.index')->with('status', 'Created a new car');
+    }
+        
 
 
     public function show(string $id)
@@ -106,7 +108,7 @@ class CarController extends Controller
             'driver_id' => 'required|integer|exists:drivers,id',
             'car_image' => 'file|image',
         ];
-
+    
         $messages = [
             'model.required' => 'Model is required',
             'manufacturer.required' => 'Manufacturer is required',
@@ -117,11 +119,13 @@ class CarController extends Controller
             'vrm.required' => 'VRM is required',
             'driver_id.integer' => 'Driver ID must be an integer',
         ];
-
+    
         $request->validate($rules, $messages);
-
+    
         $car = Car::findOrFail($id);
-        $car->update([
+    
+        // Update car attributes
+        $car->fill([
             'model' => $request->model,
             'manufacturer' => $request->manufacturer,
             'type' => $request->type,
@@ -130,19 +134,36 @@ class CarController extends Controller
             'vin' => $request->vin,
             'vrm' => $request->vrm,
             'driver_id' => $request->driver_id,
-            'car_image' => $request->car_image
         ]);
-
+    
+        // Check for a new image
+        if ($request->hasFile('car_image')) {
+            // Delete old image
+            if ($car->car_image) {
+                Storage::delete('public/images/' . $car->car_image);
+            }
+    
+            // Save new image
+            $newCarImage = $request->file('car_image');
+            $filename = date('Y-m-d-His') . '_' . $request->model . '.' . $newCarImage->getClientOriginalExtension();
+            $newCarImage->storeAs('public/images', $filename);
+    
+            $car->car_image = $filename;
+        }
+    
+        // Save the changes
+        $car->save();
+    
         return redirect()->route('admin.cars.index')->with('status', 'Updated Car');
     }
+    
 
-    public function destroy(string $id)
-    {
-        $car = Car::findOrFail($id);
-        $car->delete();
+public function destroy(string $id)
+{
+    $car = Car::findOrFail($id);
+    $car->delete();
 
-        return redirect()->route('admin.cars.index')->with('status', 'Selected Car deleted successfully!');
-    }
-
+    return redirect()->route('admin.cars.index')->with('status', 'Car deleted successfully.');
+}
 
 }
