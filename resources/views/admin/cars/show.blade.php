@@ -22,18 +22,20 @@
 
         <div class="py-12 bg-black dark:bg-red-800">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class=" flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm mb-2">
+                <div class="m-2 flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm p-4">
                     @if($car->car_image)
-                    <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
-                @else
-                    <span>No Image Available</span>
-                @endif
-
-                <p>Top Speed: 675,000,000 miles per hour</p>
-           
+                        <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
+                    @else
+                        <span>No Image Available</span>
+                    @endif
+                    <div class="ml-4">
+                        <h2 class="text-white text-2xl font-bold mb-2">{{ $car->model }}</h2>
+                        <p class="text-white">{{ $car->description }}</p>
+                    </div>
                 </div>
             </div>
         </div>
+        
 
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

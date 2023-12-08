@@ -44,13 +44,6 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label for="league_type" style="color: black" class="font-bold">League Type</label>
-                        <input type="text" name="league_type" id="league_type" placeholder="Enter League Type" style="color: black;">
-                        @error('league_type')
-                            <span>{{ $message }}</span>
-                        @enderror
-                    </div>
 
                     <div class="mb-4">
                         <label style="color: black;" for="car_id" class="block font-bold mb-1" placeholder="Select Driver">Select Car:</label>
@@ -60,6 +53,9 @@
                                 <option value="{{ $car->id }}">{{ $car->model }} {{ $car->vrm }}</option>
                             @endforeach
                         </select>
+                        @error('car_id')
+                            <span>{{ $message }}</span>
+                        @enderror
                     </div>
                     
 

@@ -1,5 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.admin')
+@section('header')
         <h2 class="font-semibold text-xl text-white leading-tight flex items-center">
             Create Race
             <span class="icon-padding ml-2">
@@ -9,8 +9,9 @@
             </span>
         </h2>
         
-    </x-slot>
+    @endsection
 
+    @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -21,7 +22,7 @@
                         <label for="title" style="color: black" class="font-bold">Title</label>
                         <input type="text" name="title" id="title" placeholder="Enter Title" style="color: black;">
                         @error('title')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -29,7 +30,7 @@
                         <label for="location"  style="color: black" class="font-bold">Location</label>
                         <input type="text" name="location" id="location" placeholder="Enter Location" style="color: black;">
                         @error('location')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -50,7 +51,7 @@
                         <label for="max_capacity"  style="color: black" class="font-bold">Maximum Capacity</label>
                         <input type="text" name="max_capacity" id="max_capacity" placeholder="Enter Maximum Capacity" style="color: black;">
                         @error('max_capacity')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -58,7 +59,7 @@
                         <label for="start_date"  style="color: black" class="font-bold">Start Date</label>
                         <input type="date" name="start_date" id="start_date" style="color: black;">
                         @error('start_date')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -67,4 +68,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

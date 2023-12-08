@@ -19,11 +19,7 @@ class DriverFactory extends Factory
             'first_name' => $this->faker->firstName, // Generate a random first name
             'last_name' => $this->faker->lastName, // Generate a random last name
             'age' => $this->faker->numberBetween(18, 40), // Generate a random number between 18 and 40
-            'league_type' => Arr::random([
-                'f1', 'f2', 'f3','rally', 'drag', 'street',
-                'stock_car', 'go_karting',  'hill_climb', 'time_attack', 'autocross', 'drift', 'sprint',
-                'hovercraft_racing', 'rocket_league', 'podracing', 'mario_kart', 'wacky_racers', 'cyberpunk_speedway', 'fantasy_grand_prix'
-            ]),
+        
             
         ];
     }

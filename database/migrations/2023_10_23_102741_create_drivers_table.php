@@ -13,11 +13,6 @@ class CreateDriversTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('age');
-            $table->enum('league_type', [
-                'f1', 'f2', 'f3', 'rally', 'drag', 'street',
-                'stock_car', 'go_karting', 'hill_climb', 'time_attack', 'autocross', 'drift', 'sprint',
-                'hovercraft_racing', 'rocket_league', 'podracing', 'mario_kart', 'wacky_racers', 'cyberpunk_speedway', 'fantasy_grand_prix'
-            ]);
             $table->timestamps();
         });
     }

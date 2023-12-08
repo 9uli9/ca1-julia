@@ -1,5 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.admin')
+@section('header')
         <h2 class="font-semibold text-xl text-white leading-tight flex items-center space-x-2">
             Show Race Details
             <span class="icon-padding">
@@ -10,12 +10,11 @@
 
             <div class="flex-grow"></div>
 
-            <div class="flex justify-end">
-                <a href="{{ route('admin.races.create') }}" class="inline-block bg-green-600 dark:bg-green-700 text-white px-4 py-2 font-bold hover:bg-green-800 dark:hover:bg-green-900">Create</a>
-            </div>
-        </h2>
-    </x-slot>
 
+        </h2>
+    @endsection
+
+    @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -55,10 +54,4 @@
             </div>
         </div>
     </div>
-    
-
-    
-    
-    
-    
-</x-app-layout>
+    @endsection

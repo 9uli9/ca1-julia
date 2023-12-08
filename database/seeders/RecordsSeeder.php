@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Car;
 use App\Models\Race;
+use App\Models\Records;
 
 class RecordsSeeder extends Seeder
 {
@@ -27,3 +28,5 @@ class RecordsSeeder extends Seeder
             });
     }
 }
+
+

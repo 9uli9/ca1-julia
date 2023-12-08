@@ -52,21 +52,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="league_type">League Type</label>
-                        <select name="league_type" id="league_type" class="border border-gray-300 p-2 rounded w-full">
-                            <option value="" selected disabled>Select League Type</option>
-                            @foreach ($leagueTypes as $type)
-                                <option value="{{ $type }}" {{ old('league_type', $driver->league_type) == $type ? 'selected' : '' }}>
-                                    {{ $type }}
-                                </option>
-                            @endforeach
-
-                        </select>
-                        @error('league_type')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </div>
+                   
 
     
 

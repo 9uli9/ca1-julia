@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('vin');
             $table->string('vrm');
+            $table->string('description');
+
             // $table->unsignedBigInteger('driver_id');
             $table->timestamps();
 
