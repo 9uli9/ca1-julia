@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('location');
             $table->enum('difficulty', ['Beginner','Intermediate','Expert']);
-            $table->integer('max_capacity');
+            $table->string('max_capacity');
             $table->date('start_date');
+
             $table->timestamps();
         });
     }
