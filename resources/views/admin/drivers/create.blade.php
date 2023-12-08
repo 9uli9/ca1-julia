@@ -53,9 +53,9 @@
                     </div>
 
                     <div class="mb-4">
-                        <label style="color: black;" for="car_id" class="block font-bold mb-1" placeholder="Select Driver">Select Cars:</label>
-                        <select name="car_id[]" id="car_id" class="border border-gray-300 p-2 w-full" multiple>
-                            <option value="" disabled selected>Select Cars</option>
+                        <label style="color: black;" for="car_id" class="block font-bold mb-1" placeholder="Select Driver">Select Car:</label>
+                        <select name="car_id[]" id="car_id" class="border border-gray-300 p-2 w-full" >
+                            <option value="" disabled selected>Select Car</option>
                             @foreach ($cars as $car)
                                 <option value="{{ $car->id }}">{{ $car->model }} {{ $car->vrm }}</option>
                             @endforeach
