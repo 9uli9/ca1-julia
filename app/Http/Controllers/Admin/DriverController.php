@@ -38,16 +38,17 @@ class DriverController extends Controller
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
-            'league_type' => 'required|in: f1, f2, f3, rally, drag, street,
-            stock_car, go_karting,  hill_climb, time_attack, autocross, drift, sprint,
-            hovercraft_racing, rocket_league, podracing, mario_kart, wacky_racers, cyberpunk_speedway, fantasy_grand_prix',
+            'description' => 'required|string|min:2|max:150',
+            'driver_image' => 'file|image'
+            
         ];
 
         $messages = [
             'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
+            'description.required' => 'Description is required',
             'age.required' => 'Age is required',
-            'league_type.required' => 'League Type is required'
+            
         ];
 
         // Validate the request data
@@ -58,9 +59,17 @@ class DriverController extends Controller
         $driver->first_name = $request->first_name;
         $driver->last_name = $request->last_name;
         $driver->age = $request->age;
-        $driver->league_type = $request->league_type;
-        $driver->save();
+        $car->description = $request->description;
+        
 
+        if ($request->hasFile('driver_image')) {
+            $driver_image = $request->file('driver_image');
+            $filename = date('Y-m-d-His') . '_' . $request->model . '.' . $driver_image->getClientOriginalExtension();
+            $driver_image->storeAs('public/images', $filename);
+            $driver->driver_image = $filename;
+        }
+
+        $driver->save();
         // Redirect back to the 'drivers.index' route with a success message
         return redirect()->route('admin.drivers.index')->with('status', 'Created a new Driver');
     }
@@ -90,10 +99,8 @@ class DriverController extends Controller
         return view('admin.drivers.edit', [
             'driver' => $driver,
             'cars'=> $cars,
-            'leagueTypes' => ['f1', 'f2', 'f3','rally', 'drag', 'street',
-            'stock_car', 'go_karting',  'hill_climb', 'time_attack', 'autocross', 'drift', 'sprint',
-            'hovercraft_racing', 'rocket_league', 'podracing', 'mario_kart', 'wacky_racers', 'cyberpunk_speedway', 'fantasy_grand_prix'
-]
+            
+
         ]);
     }
 
@@ -105,19 +112,18 @@ class DriverController extends Controller
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
-            'league_type' => 'required|in: f1, f2, f3, rally, drag, street,
-            stock_car, go_karting,  hill_climb, time_attack, autocross, drift, sprint,
-            hovercraft_racing, rocket_league, podracing, mario_kart, wacky_racers, cyberpunk_speedway, fantasy_grand_prix',
+            'description' => 'required|string|min:2|max:150',
             'car_id' => 'array',
+            'driver_image' => 'file|image',
         ];
     
         $messages = [
             'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
             'age.required' => 'Age is required',
-            'league_type.required' => 'League Type is required',
-            'league_type.in' => 'Invalid League Type',
+            'description.required' => 'Description is required',
             'car_id.array' => 'Please select at least one car',
+
         ];
 
         $request->validate($rules, $messages);
@@ -126,7 +132,18 @@ class DriverController extends Controller
         $driver->first_name = $request->first_name;
         $driver->last_name = $request->last_name;
         $driver->age = $request->age;
-        $driver->league_type = $request->league_type;
+        $car->description = $request->description;
+
+            // Check for a new image
+if ($request->hasFile('driver_image')) {
+    // Save new image
+    $newDriverImage = $request->file('driver_image');
+    $filename = date('Y-m-d-His') . '_' . $request->model . '.' . $newDriverImage->getClientOriginalExtension();
+    $newDriverImage->storeAs('public/images', $filename);
+
+    // Update the car model with the new image filename and do not delete the old image
+    $driver->driver_image = $filename;
+}
         $driver->save();
 
         return redirect()->route('admin.drivers.index')->with('status', 'Updated Driver');

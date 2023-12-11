@@ -29,6 +29,7 @@ class CarController extends Controller
         $rules = [
             'model' => 'required|string|min:2|max:150',
             'manufacturer' => 'required|string|min:2|max:150',
+            'description' => 'required|string|min:2|max:150',
             'type' => 'required|string|min:2|max:150',
             'fuel' => 'required|string|min:2|max:150',
             'colour' => 'required|string|min:2|max:150',
@@ -51,11 +52,14 @@ class CarController extends Controller
     
         // Validate the request
         $request->validate($rules, $messages);
+
+        // dd($request);
     
         // Create a new Car instance and fill it with request data
         $car = new Car;
         $car->model = $request->model;
         $car->manufacturer = $request->manufacturer;
+        $car->description = $request->description;
         $car->type = $request->type;
         $car->fuel = $request->fuel;
         $car->colour = $request->colour;
@@ -128,6 +132,7 @@ class CarController extends Controller
         $car->fill([
             'model' => $request->model,
             'manufacturer' => $request->manufacturer,
+            'description' => $request->description,
             'type' => $request->type,
             'fuel' => $request->fuel,
             'colour' => $request->colour,
@@ -136,27 +141,24 @@ class CarController extends Controller
             'driver_id' => $request->driver_id,
         ]);
     
-        // Check for a new image
-        if ($request->hasFile('car_image')) {
-            // Delete old image
-            if ($car->car_image) {
-                Storage::delete('public/images/' . $car->car_image);
-            }
-    
-            // Save new image
-            $newCarImage = $request->file('car_image');
-            $filename = date('Y-m-d-His') . '_' . $request->model . '.' . $newCarImage->getClientOriginalExtension();
-            $newCarImage->storeAs('public/images', $filename);
-    
-            $car->car_image = $filename;
-        }
-    
-        // Save the changes
-        $car->save();
-    
-        return redirect()->route('admin.cars.index')->with('status', 'Updated Car');
-    }
-    
+   
+    // Check for a new image
+if ($request->hasFile('car_image')) {
+    // Save new image
+    $newCarImage = $request->file('car_image');
+    $filename = date('Y-m-d-His') . '_' . $request->model . '.' . $newCarImage->getClientOriginalExtension();
+    $newCarImage->storeAs('public/images', $filename);
+
+    // Update the car model with the new image filename and do not delete the old image
+    $car->car_image = $filename;
+}
+
+// Save the changes
+$car->save();
+
+return redirect()->route('admin.cars.index')->with('status', 'Updated Car');
+}
+
 
 public function destroy(string $id)
 {

@@ -21,7 +21,7 @@
     <div class="py-12">
 
         <div class="py-12 bg-black dark:bg-red-800">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
                 <div class="m-2 flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm p-4">
                     @if($car->car_image)
                         <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
@@ -35,10 +35,12 @@
                 </div>
             </div>
         </div>
+
+        
         
 
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <ul role="list" class="divide-red-100 dark:divide-red-700">
                     <div class="relative overflow-x-auto shadow-md">
@@ -73,7 +75,7 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->driver->first_name }} {{ $car->driver->last_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                         @if($car->car_image)
-                                            <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
+                                            <img width="50" src="{{ asset("storage/images/" . $car->car_image) }}" />
                                         @else
                                             <span>No Image Available</span>
                                         @endif
@@ -95,6 +97,8 @@
                     </div>
                 </ul>
             </div>
+
+            
         </div>
 
     </div>

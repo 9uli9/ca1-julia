@@ -19,7 +19,7 @@
     
     @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <ul role="list" class="divide-red-100 dark:divide-red-700">
                     <div class="relative overflow-x-auto shadow-md">
@@ -31,6 +31,10 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Last Name
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
+                                        Image
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
@@ -48,6 +52,13 @@
                                             {{ $driver->last_name }}
                                         </td>
 
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                            @if($driver->driver_image)
+                                                <img width="50" src="{{ asset("storage/images/" . $driver->driver_image) }}" alt="Img" />
+                                            @else
+                                                <span>No Image Available</span>
+                                            @endif
+                                        </td>
                                         
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                             <a href="{{ route('admin.drivers.show', ['driver' => $driver->id]) }}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Show</a>

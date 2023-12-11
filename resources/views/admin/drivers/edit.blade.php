@@ -21,9 +21,9 @@
 
    @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.drivers.update', $driver->id) }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('admin.drivers.update', $driver->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -52,30 +52,30 @@
                         @enderror
                     </div>
 
-                   
-
-    
-
                     <div class="mb-4">
-                        <label style="color: black;" class="font-bold" for="cars">Cars</label>
-                        <select name="car_ids[]" id="car_ids" class="border border-gray-300 p-2 rounded w-full" multiple>
-                            <option value="" disabled>Select Cars</option>
-                            @foreach ($cars as $car)
-                                <option value="{{ $car->id }}" {{ in_array($car->id, old('car_ids', $driver->cars->pluck('id')->toArray()) ?: []) ? 'selected' : '' }}>
-                                    {{ $car->model }} ({{ $car->vrm }})
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('car_ids')
+                        <label for="description" class="font-bold" style="color: black;">Description</label>
+                        <input type="text" name="description" id="description" value="{{ old('description', $driver->description) }}"placeholder="Enter Description" class="text-black w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500">
+                        @error('description')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
-                    
-                    
-                    
+
+                    <div class="mb-4">
+                        <label style="color: black;" class="font-bold" for="driver_image">Driver Image</label>
+                        <input type="file" name="driver_image" id="driver_image" class="border border-gray-300 p-2 rounded w-full" value="{{ old('driver_image', $driver->driver_image) }}">
+                        @error('driver_image')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                        @if($driver->driver_image)
+                            <div style="color: black;" class="mb-4">
+                                <img width="100" src="{{ asset("storage/images/" . $driver->driver_image) }}" alt="Current driver Image">
+                            </div>
+                        @endif
+                    </div>
+
+                      
                     <div class="flex justify-between">
-                        <form action="{{ route('admin.drivers.update', $car->id) }}" method="POST">
-                            @csrf
+                        
                         <button type="submit" class="inline-block bg-red-600 text-white px-4 py-2 font-bold hover:bg-red-800 mb-4">Submit</button>
                         </form>
                 

@@ -15,16 +15,17 @@
 
         @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.drivers.store') }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('admin.drivers.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('POST')
 
                     <div class="mb-4">
                         <label for="first_name" style="color: black" class="font-bold">First Name</label>
                         <input type="text" name="first_name" id="first_name" placeholder="Enter First name" style="color: black;">
                         @error('first_name')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -32,7 +33,7 @@
                         <label for="last_name" style="color: black" class="font-bold">Last Name</label>
                         <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name" style="color: black;">
                         @error('last_name')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -40,24 +41,27 @@
                         <label for="age" style="color: black" class="font-bold">Age</label>
                         <input type="text" name="age" id="age" placeholder="Enter Age" style="color: black;">
                         @error('age')
-                            <span>{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
-
+                    <div class="mb-4">
+                        <label for="description" class="font-bold" style="color: black;">Description</label>
+                        <input type="text" name="description" id="description" placeholder="Enter Description" class="text-black w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500">
+                        @error('description')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     <div class="mb-4">
-                        <label style="color: black;" for="car_id" class="block font-bold mb-1" placeholder="Select Driver">Select Car:</label>
-                        <select name="car_id[]" id="car_id" class="border border-gray-300 p-2 w-full" >
-                            <option value="" disabled selected>Select Car</option>
-                            @foreach ($cars as $car)
-                                <option value="{{ $car->id }}">{{ $car->model }} {{ $car->vrm }}</option>
-                            @endforeach
-                        </select>
-                        @error('car_id')
-                            <span>{{ $message }}</span>
-                        @enderror
-                    </div>
-                    
+                        <label style="color: black;" for="driver_image" class="block font-bold mb-1">Select Image</label>
+                        <input style="color: black;"
+                            type="file"
+                            name="driver_image"
+                            placeholder="Driver Image"
+                            class="w-full mt-6"
+                            field="driver_image"
+                            />
+                        </div>
 
 
 

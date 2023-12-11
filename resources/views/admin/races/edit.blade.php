@@ -18,7 +18,7 @@
 
    @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form action="{{ route('admin.races.update', $race->id) }}" method="POST">
                     @csrf
@@ -45,11 +45,19 @@
                         <label style="color: black;" class="font-bold" for="difficulty">Difficulty</label>
                         <select name="difficulty" id="difficulty" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
                             <option value="" selected disabled>Select Difficulty</option>
-                            <option value="easy">Beginner</option>
-                            <option value="medium">Intermediate</option>
-                            <option value="hard">Expert</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
                         </select>
                         @error('difficulty')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="start_date"  style="color: black" class="font-bold">Start Date</label>
+                        <input type="date" name="start_date" id="start_date" style="color: black;">
+                        @error('start_date')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>

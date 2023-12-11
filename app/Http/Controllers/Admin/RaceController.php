@@ -107,13 +107,15 @@ class RaceController extends Controller
     // Update an existing race
     public function update(Request $request, string $id)
     {
+
+
         // Define validation rules and custom error messages
         $rules = [
             'title' => 'required|string|min:2|max:150',
             'location' => 'required|string|min:2|max:150',
             'difficulty' => 'required|in:Beginner,Intermediate,Expert',
             'max_capacity' => 'required|integer', 
-            'start_date' => 'required|integer', 
+            'start_date' => 'required|date', 
 
         ];
     
@@ -126,10 +128,13 @@ class RaceController extends Controller
             'start_date.required' => 'Start Date is required',
 
         ];
+
     
         // Validate the request data
         $request->validate($rules, $messages);
     
+        // dd($request);
+
         // Find the race by its ID
         $race = Race::findOrFail($id);
         $race->title = $request->title;

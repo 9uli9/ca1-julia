@@ -16,13 +16,14 @@
 
     @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <ul role="list" class="divide-red-100 dark:divide-red-700">
                     <div class="relative overflow-x-auto shadow-md">
                         <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
                             <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
                                 <tr class="bg-red dark:bg-black-800 border-b border-white-100 dark:border-white-700">
+                                    <th class="px-6 py-3 font-bold text-red">Id</th>
                                     <th class="px-6 py-3 font-bold text-red">Title</th>
                                     <th class="px-6 py-3 font-bold text-red">Location</th>
                                     <th class="px-6 py-3 font-bold text-red">Difficulty</th>
@@ -33,6 +34,7 @@
                             </thead>
                             <tbody class="text-gray-800">
                                 <tr class="bg-black dark:bg-black-800 border-b border-white-100 dark:border-white-700">
+                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $race->id }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $race->title }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $race->location }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $race->difficulty }}</td>

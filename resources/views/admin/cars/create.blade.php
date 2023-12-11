@@ -15,7 +15,7 @@
 
         @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form enctype="multipart/form-data" action="{{ route('admin.cars.store')}}" method="post">
 
@@ -29,6 +29,15 @@
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="mb-4">
+                        <label for="description" class="font-bold" style="color: black;">Description</label>
+                        <input type="text" name="description" id="description" placeholder="Enter Description" class="text-black w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500">
+                        @error('description')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
+
 
                     <div class="mb-4">
                         <label for="manufacturer" class="font-bold" style="color: black;">Manufacturer</label>
