@@ -90,11 +90,23 @@ Route::resource('/records', UserRecordsController::class)
 Route::resource('/admin/records', AdminRecordsController::class)->middleware(['auth', 'role:admin'])->names('admin.records');
 
 
+
+// The Car routes define two sets of resourceful controllers.
+// One for regular users with limited actions and another for administrators with full CRUD accesibility.
+// Middle ware is used for security and authentication and so is the AdminCarController.
+
+
 Route::resource('/cars', UserCarController::class)
 ->middleware(['auth', 'role:user,admin'])
 ->names('user.cars')
 ->only(['index', 'show']);
 Route::resource('/admin/cars', AdminCarController::class)->middleware(['auth', 'role:admin'])->names('admin.cars');
+
+
+// php artisan route:list
+
+
+
 
 Route::resource('/races', UserRaceController::class)
 ->middleware(['auth', 'role:user,admin'])

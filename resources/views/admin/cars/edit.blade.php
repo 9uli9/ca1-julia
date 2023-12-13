@@ -18,6 +18,13 @@
         </h2>
     @endsection
 
+{{-- This Blade (admin.cars.edit )view like the last provides a form except this time it is prefilled with old values
+ selected. this uses the old method.The form is configured to submit a POST request to the admin.cars.store route,
+indicating that it is intended for creating a new car.It handles form submission, validation,
+and also allows for the deletion of the car currently being edited .
+
+CSRF protection is applied with @csrf this is a form of a security token.   --}}
+
     @section('content')
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">

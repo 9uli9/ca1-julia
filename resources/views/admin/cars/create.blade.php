@@ -10,7 +10,15 @@
             </span>
         </h2>
 
-        
+        {{-- 
+    Blade view (create.blade.php) for creating a new car in the admin panel.
+    Extends the 'layouts.admin'.
+    Provides a form with input fields for the car's model, description, manufacturer, type, fuel, colour, VIN, VRM, driver, and image.
+    Admins can select a driver from the existing list and upload an image for the car.
+    The form is then sent to the CarController and Validation messages are displayed for each input field if there are errors.
+    Upon submission, the form sends a POST request to the 'admin.cars.store' route to store the new car data.
+    
+--}}
         @endsection
 
         @section('content')
@@ -20,7 +28,7 @@
                 <form enctype="multipart/form-data" action="{{ route('admin.cars.store')}}" method="post">
 
                     @csrf
-                    {{-- @method('PUT') --}}
+                    
 
                     <div class="mb-4">
                         <label for="model" class="font-bold" style="color: black;">Models</label>

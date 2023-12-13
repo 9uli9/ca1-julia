@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-
 @section('header')
         <h2 class="font-semibold text-xl text-white leading-tight flex items-center space-x-2">
             Cars
@@ -20,6 +19,12 @@
         </h2>
 
         @endsection
+
+{{-- This Blade index.blade.php view inside the cars folder provides an interface for Admins to view a paginated list of cars.
+It allows for easy navigation and provides basic information about each car.
+It includes a link to view more details. 
+The layout structure is consistent with the 'admin' layout, indicating that it's part of an admin panel.
+The regular users do not have access to this view. --}}
     
     @section('content')
     <div class="py-12">

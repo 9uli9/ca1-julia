@@ -17,6 +17,14 @@
         </h2>
     @endsection
 
+{{-- 
+After clicking the show button in the index view,The (show.blade.php) view is showed and is used to display detailed information about a specific car.
+It extends the 'layouts.admin' layout and features a title along with an icon in the header section.
+The content section includes a banner with the car's image, model, and description.
+Additionally, a table showcases various details of the car, such as ID, model, manufacturer, type, fuel, colour, VIN, VRM, driver's name, and an image.
+Admin actions like "Delete" and "Edit" are available at the bottom of the view, allowing admins to manage the car.
+--}}
+
     @section('content')
     <div class="py-12">
 
@@ -35,10 +43,6 @@
                 </div>
             </div>
         </div>
-
-        
-        
-
 
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">

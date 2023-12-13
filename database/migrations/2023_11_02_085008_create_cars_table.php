@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
+// This migration creates a 'cars' table with specific columns to store information about cars
+
 return new class extends Migration
 {
 
@@ -20,11 +23,8 @@ return new class extends Migration
             $table->string('vin');
             $table->string('vrm');
             $table->string('description');
-
-            // $table->unsignedBigInteger('driver_id');
             $table->timestamps();
 
-            // $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
         });
     }
 

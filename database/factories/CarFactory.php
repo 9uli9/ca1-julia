@@ -6,13 +6,17 @@ use App\Models\Driver;
 use App\Models\Car;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
+// The CarFactory generates fake data for the Car model.
+// Allowing myself to easily create test data or seed a database with realistic-looking information for cars.
+
+// It associates each car with a newly created driver by using the Driver::factory()->create()->id method.
+
 class CarFactory extends Factory
 {
 
     public function definition(): array
     {
-        //  fake data for the Car model.
-
         return [
             'colour' => $this->faker->randomElement(['Red', 'Blue', 'Green', 'Black', 'White', 'Silver', 'Gray', 'Yellow', 'Orange', 'Purple', 'Brown', 'Cyan', 'Magenta', 'Beige', 'Turquoise', 'Indigo', 'Teal', 'Olive', 'Pink', 'Lavender']), 
             'fuel' => $this->faker->randomElement(['Gasoline', 'Diesel', 'Electric', 'Water', 'Solar']),
