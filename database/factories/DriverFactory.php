@@ -19,7 +19,7 @@ class DriverFactory extends Factory
             'first_name' => $this->faker->firstName, // Generate a random first name
             'last_name' => $this->faker->lastName, // Generate a random last name
             'age' => $this->faker->numberBetween(18, 40), // Generate a random number between 18 and 40
-            'description' => 'A perfect blend of style and performance. The powerful engine delivers an exhilarating ride'
+            'description' => $this->faker->sentence() . 'A perfect blend of style and performance. The powerful engine delivers an exhilarating ride'
             
         ];
     }

@@ -1,30 +1,3 @@
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            Show Car
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <p>{{ $car->brand }}</p>
-                <p>{{ $car->colour }}</p>
-                <p>{{ $car->league_type }}</p>
-
-                <div class="mt-4">
-                    <a href="{{ route('cars.edit', $car->id) }}" class="inline-block bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 font-bold hover:bg-blue-800 dark:hover:bg-blue-900">Edit</a>
-
-                    <form method="POST" action="{{ route('cars.destroy', $car->id) }}" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="inline-block bg-red-600 dark:bg-red-700 text-white px-4 py-2 font-bold hover:bg-red-800 dark:hover:bg-red-900">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}
 
 <x-app-layout>
     <x-slot name="header">
@@ -47,6 +20,22 @@
     </x-slot>
 
     <div class="py-12">
+        <div class="py-12 bg-black dark:bg-red-800">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="m-2 flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm p-4">
+                    @if($car->car_image)
+                        <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
+                    @else
+                        <span>No Image Available</span>
+                    @endif
+                    <div class="ml-4">
+                        <h2 class="text-white text-2xl font-bold mb-2">{{ $car->model }}</h2>
+                        <p class="text-white">{{ $car->description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <ul role="list" class="divide-red-100 dark:divide-red-700">
@@ -63,7 +52,7 @@
                                     <th class="px-6 py-3 font-bold text-red">VIN</th>
                                     <th class="px-6 py-3 font-bold text-red">VRM</th>
                                     <th class="px-6 py-3 font-bold text-red">Driver</th>
-                                    <th class="px-6 py-3 font-bold text-red">Image</th>
+                               
 
                                 </tr>
                             </thead>
@@ -80,13 +69,7 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vin }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vrm }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->driver->first_name }} {{ $car->driver->last_name }}</td>
-                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
-                                        @if($car->car_image)
-                                            <img width="300" src="{{ asset("storage/images/" . $car->car_image) }}" />
-                                        @else
-                                            <span>No Image Available</span>
-                                        @endif
-                                    </td>
+                                  
                                 </tr>
                             </tbody>
                         </table>

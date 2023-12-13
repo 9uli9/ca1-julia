@@ -38,7 +38,7 @@ class DriverController extends Controller
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
-            'description' => 'required|string|min:2|max:150',
+            'description' => 'required|string|min:2|max:1000',
             'driver_image' => 'file|image'
             
         ];
@@ -59,7 +59,7 @@ class DriverController extends Controller
         $driver->first_name = $request->first_name;
         $driver->last_name = $request->last_name;
         $driver->age = $request->age;
-        $car->description = $request->description;
+        $driver->description = $request->description;
         
 
         if ($request->hasFile('driver_image')) {
@@ -112,7 +112,7 @@ class DriverController extends Controller
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
             'age' => 'required|integer',
-            'description' => 'required|string|min:2|max:150',
+            'description' => 'required|string|min:2|max:1000',
             'car_id' => 'array',
             'driver_image' => 'file|image',
         ];
@@ -132,7 +132,7 @@ class DriverController extends Controller
         $driver->first_name = $request->first_name;
         $driver->last_name = $request->last_name;
         $driver->age = $request->age;
-        $car->description = $request->description;
+        $driver->description = $request->description;
 
             // Check for a new image
 if ($request->hasFile('driver_image')) {

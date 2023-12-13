@@ -19,7 +19,7 @@
     <div class="py-12">
 
         <div class="py-12 bg-black dark:bg-red-800">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
                 <div class="m-2 flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm p-4">
                     @if($driver->driver_image)
                         <img width="300" src="{{ asset("storage/images/" . $driver->driver_image) }}" />
@@ -136,6 +136,7 @@
                 @endif
             </div>
         </div>
+        
     </div>
 
     

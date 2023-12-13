@@ -19,6 +19,22 @@
     </x-slot>
 
     <div class="py-12">
+        <div class="py-12 bg-black dark:bg-red-800">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="m-2 flex bg-red-600 dark:bg-red-700 overflow-hidden shadow-sm p-4">
+                    @if($driver->driver_image)
+                        <img width="300" src="{{ asset("storage/images/" . $driver->driver_image) }}" />
+                    @else
+                        <span>No Image Available</span>
+                    @endif
+                    <div class="ml-4">
+                        <h2 class="text-white text-2xl font-bold mb-2">{{ $driver->first_name }} {{ $driver->last_name }}</h2>
+                        <p class="text-white">{{ $driver->description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <ul role="list" class="divide-red-100 dark:divide-red-700">
@@ -29,7 +45,7 @@
                                     <th class="px-6 py-3 font-bold text-red">First Name</th>
                                     <th class="px-6 py-3 font-bold text-red">Last Name</th>
                                     <th class="px-6 py-3 font-bold text-red">Age</th>
-                                    <th class="px-6 py-3 font-bold text-red">League Type</th>
+                                
 
                                 </tr>
                             </thead>
@@ -38,7 +54,6 @@
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->first_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->last_name }}</td>
                                     <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->age }}</td>
-                                    <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $driver->league_type }}</td>
                                     </td>
                                 </tr>
                             </tbody>
@@ -47,8 +62,66 @@
                 </ul>
             </div>
         </div>
-    </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+            <ul role="list" class="divide-red-100 dark:divide-red-700">
+                <div class="relative overflow-x-auto shadow-md">
+                    <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
+                        <thead class="text-lg text-red-700 bg-red-50 dark:bg-red-700 dark:text-red-400">
+                            <tr class="bg-red dark:bg-black-800 border-b border-white-100 dark:border-white-700">
+
+                                <th class="px-6 py-3 font-bold text-red">Id</th>
+                                <th class="px-6 py-3 font-bold text-red">Model</th>
+                                <th class="px-6 py-3 font-bold text-red">Manufacturer</th>
+                                <th class="px-6 py-3 font-bold text-red">Type</th>
+                                <th class="px-6 py-3 font-bold text-red">Fuel</th>
+                                <th class="px-6 py-3 font-bold text-red">Colour</th>
+                                <th class="px-6 py-3 font-bold text-red">VIN</th>
+                                <th class="px-6 py-3 font-bold text-red">VRM</th>
+                                <th class="px-6 py-3 font-bold text-red">Driver</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-800">
+                         
+        
+            @if($driver->cars->isNotEmpty())
+                @foreach($driver->cars as $car)
+                    <ul role="list" class="divide-red-100 dark:divide-red-700">
+                        <div class="relative overflow-x-auto shadow-md">
+                            <table class="w-full text-sm text-left text-red-500 dark:text-red-400">
+                                <tbody class="text-gray-800">
+                                    <tr class="bg-black dark:bg-black-800 border-b border-white-100 dark:border-white-700">
     
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->id }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->model }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->manufacturer }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->type }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->fuel }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->colour }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vin }}</td>
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">{{ $car->vrm }}</td>
+
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                        <a href="{{ route('user.cars.show', $car->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Go To Car</a></td>
+                 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ul>
+                @endforeach
+            @else
+            <tr>
+                <td colspan="8" class="px-6 py-4 font-semibold text-xl text-red-900  dark:text-black ">
+                    No Car Details Found.
+                </td>
+            </tr>
+            @endif
+        </div>
+    </div>
+    </div>
+</div>
 
     
     

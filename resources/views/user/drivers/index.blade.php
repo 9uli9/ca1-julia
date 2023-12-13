@@ -30,7 +30,9 @@
                                     <th scope="col" class="px-6 py-3">
                                         Last Name
                                     </th>
-
+                                    <th scope="col" class="px-6 py-3">
+                                        Image
+                                    </th>
                                     <th scope="col" class="px-6 py-3">
                                         Actions
                                     </th>
@@ -44,6 +46,14 @@
                                         </td>
                                         <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                                             {{ $driver->last_name }}
+                                        </td>
+                                        
+                                        <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
+                                            @if($driver->driver_image)
+                                                <img width="50" src="{{ asset("storage/images/" . $driver->driver_image) }}" alt="Img" />
+                                            @else
+                                                <span>No Image Available</span>
+                                            @endif
                                         </td>
 
                                         

@@ -37,15 +37,16 @@
                     <div class="mb-4">
                         <label style="color: black;" class="font-bold" for="difficulty">Difficulty</label>
                         <select name="difficulty" id="difficulty" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500" style="color: black;">
-                            <option value="" selected disabled>Select Difficulty</option>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Expert">Expert</option>
+                            <option value="" disabled>Select Difficulty</option>
+                            <option value="Beginner" {{ old('difficulty') == 'Beginner' ? 'selected' : '' }}>Beginner</option>
+                            <option value="Intermediate" {{ old('difficulty') == 'Intermediate' ? 'selected' : '' }}>Intermediate</option>
+                            <option value="Expert" {{ old('difficulty') == 'Expert' ? 'selected' : '' }}>Expert</option>
                         </select>
                         @error('difficulty')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+                    
 
                     <div class="mb-4">
                         <label for="max_capacity"  style="color: black" class="font-bold">Maximum Capacity</label>

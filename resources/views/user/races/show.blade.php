@@ -8,12 +8,12 @@
                 </svg>
             </span>
 
-            <div class="flex-grow">
+            <div class="flex-grow"></div>
                 <td class="px-6 py-4 font-medium text-red-900 whitespace-nowrap dark:text-white">
                     <a href="{{ route('user.races.index', $race->id) }}" class="inline-block bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 font-bold hover:bg-yellow-600 dark:hover:bg-yellow-700">Back</a>
     
                 </td>
-            </div>
+            
         </h2>
     </x-slot>
 

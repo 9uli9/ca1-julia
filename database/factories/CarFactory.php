@@ -21,7 +21,7 @@ class CarFactory extends Factory
             'type' => $this->faker->randomElement(['Sedan', 'SUV', 'Truck', 'Sports Car', 'Convertible', 'Coupe', 'Wagon', 'Hatchback', 'Minivan', 'Van', 'Crossover', 'Compact Car', 'Electric Car', 'Hybrid', 'Luxury Car', 'Off-road Vehicle', 'Pickup Truck', 'Commercial Vehicle', 'Race Car', 'Vintage Car', 'Exotic Car']),
             'vin' => $this->faker->unique()->isbn10,
             'vrm' => $this->faker->regexify('[A-Z]{2}[0-9]{2} [A-Z]{3}'), 
-            'description' => 'A perfect blend of style and performance. The powerful engine delivers an exhilarating ride',
+            'description' => $this->faker->sentence() . ' Combining elegance with powerful performance, this car promises an unforgettable driving experience.',
             'driver_id' => Driver::factory()->create()->id, 
         ];
     }
